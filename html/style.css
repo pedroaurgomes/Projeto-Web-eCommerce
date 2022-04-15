@@ -221,6 +221,21 @@ main {
     color: var(--dark-gray);
 }
 
+/* Logo in the top bar */
+
+#logo {
+    cursor: pointer;
+}
+
+#logo svg {
+    fill: var(--white);
+    transition: fill var(--transition-speed) ease;
+}
+
+#logo:hover svg {
+    fill: var(--light-gray);
+}
+
 /* Carousel in home page */
 
 #home-image {
