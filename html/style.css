@@ -210,6 +210,10 @@ main {
     padding: 0 1em;
 }
 
+.product-data h4 {
+    color: var(--dark-gray);
+}
+
 #home-image {
     background-color: var(--green);
     width: 100%;
