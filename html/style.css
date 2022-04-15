@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+:root {
+    --white: #f2f2f2;
+    --black: #333333;
+    --green: #6fcf97;
+    --red: #eb5757;
+    --orange: #f2994a;
+    --yellow: #f2c94c;
+    --purple: #BB6BD9;
+    --blue: #56ccf2;
+    --very-light-gray: #e0e0e0;
+    --light-gray: #BDBDBD;
+    --dark-gray: #828282;
+    --darken: #00000075;
+    --main-column-padding: 10%;
+    --transition-speed: 200ms;
+    --fast-transition-speed: 100ms;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+ol, ul {
+    padding: 0;
+    list-style: none;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--black);
+    box-sizing: border-box;
+}
+
+header nav {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2em;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+footer {
+    width: 100%;
+    background-color: var(--black);
+    box-sizing: border-box;
+    display: grid;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    grid-template-columns: repeat(3, 1fr);
+    color: var(--white);
+}
+
+footer h3 {
+    margin-bottom: 0;
+}
+
+footer ul {
+    margin-top: 0.5em;
+}
+
+footer a {
+    color: var(--white);
+}
+
+main {
+    margin: 1em 0;
+}
+
+.main-column {
+    padding-left: var(--main-column-padding);
+    padding-right: var(--main-column-padding);
+}
+
+.search-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    border: 2px solid var(--dark-gray);
+    transition: border-color var(--transition-speed) ease;
+    padding: 0.2em 0.6em;
+    border-radius: 50px;
+}
+
+.search-bar:focus-within {
+    border: 2px solid var(--black);
+}
+
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 15em;
+    transition: width var(--transition-speed) ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar:focus-within input {
+    border: none;
+    outline: none;
+    width: 25em;
+}
+
+.search-bar i {
+    color: var(--dark-gray);
+    transition: color var(--transition-speed) ease;
+}
+
+.search-bar:focus-within > i {
+    color: var(--black);
+}
+
+.filter-container {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1em;
+}
+
+.filter-list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+}
+
+.chip {
+    border-radius: 50px;
+    background-color: var(--light-gray);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.chip-text {
+    padding: 0.2em 0.6em;
+}
+
+.chip-undeletable.chip-delete {
+    display: none;
+}
+
+.chip-delete {
+    background-color: var(--darken);
+    font-size: 0.7em;
+    width: 2.5em;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chip-delete:hover i {
+    color: var(--light-gray);
+}
+
+.product-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 1em;
+}
+
+.product {
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: 10px;
+    width: fit-content;
+    overflow: hidden;
+    transition: box-shadow var(--fast-transition-speed) ease-in;
+    border: 1px var(--very-light-gray) solid;
+}
+
+.product:hover {
+    box-shadow: 5px 4px 6px var(--very-light-gray);
+    cursor: pointer;
+}
+
+.product-data h3, .product-data h4, .product-data p {
+    margin: 0.3em 0;
+}
+
+.product-data {
+    padding: 0 1em;
+}
+
+#home-image {
+    background-color: var(--green);
+    width: 100%;
+    height: 60vh;
+    margin-bottom: 1em;
+}
+
+
+
+.image-placeholder {
+    background-color: var(--green);
+    width: 320px;
+    height: 340px;
+}
