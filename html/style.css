@@ -94,6 +94,8 @@ main {
     padding-right: var(--main-column-padding);
 }
 
+/* Input */
+
 .material-input {
     display: flex;
     flex-flow: row nowrap;
@@ -136,6 +138,8 @@ main {
     color: var(--black);
 }
 
+/* Search filter */
+
 .filter-container {
     display: flex;
     flex-flow: row nowrap;
@@ -147,6 +151,8 @@ main {
     flex-flow: row wrap;
     gap: 1em;
 }
+
+/* Chip component */
 
 .chip {
     border-radius: 50px;
@@ -186,6 +192,8 @@ main {
     justify-content: space-around;
     gap: 1em;
 }
+
+/* Product preview in catalog page */
 
 .product {
     display: flex;
@@ -244,6 +252,22 @@ a {
 .center-text {
     text-align: center;
 }
+/* Logo in the top bar */
+
+#logo {
+    cursor: pointer;
+}
+
+#logo svg {
+    fill: var(--white);
+    transition: fill var(--transition-speed) ease;
+}
+
+#logo:hover svg {
+    fill: var(--light-gray);
+}
+
+/* Carousel in home page */
 
 #home-image {
     background-color: var(--green);
@@ -276,3 +300,28 @@ a {
 #home-image > fieldset > input[type="radio"]:checked {
   background-color: var(--dark-gray);
 }
+
+#members-list {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    gap: 4em;
+}
+
+#members-title {
+    text-align: center;
+    padding: 2em;
+}
+
+#members-list li a {
+    text-decoration: none;
+}
+
+#members-list li a:visited {
+    color: var(--black);
+}
+
+#members-list li a p {
+    text-align: center;
+}
+
