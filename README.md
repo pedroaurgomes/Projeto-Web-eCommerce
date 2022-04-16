@@ -2,8 +2,6 @@
 
 ![logo vintage store](/extra/logovintage.png "vintage logo")
 
-<img src="/extra/logovintage.png" alt="vintagelogo" style="height: 100px; width:100px;"/>
-
 Trabalho desenvolvido para a disciplina de Introdução ao Desenvolvimento Web (SCC-0219), no primeiro semestre  de 2022, no ICMC -USP
 
 AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves de segurança.
