@@ -28,6 +28,9 @@ AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves 
 ### 2. Descrição do Projeto
 A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como base para a construção de um site de e-commerce para a disciplina.
 
+#### Diagrama de navegação:
+
+![diagrama de navegação](/extra/Diagrama\ de\ Navegação\ -\ Web.png "diagrama")
 
 ### 3. Comentários sobre o código
 
