@@ -73,8 +73,7 @@ A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como 
 
 Verifique os mock-ups de todas as páginas na pasta "mockup", ou através dos links abaixo:
 
-
-* [mockup/Home_Catalogo.png](Home page / Catálogo)
+* [Home page / Catálogo](mockup/Home_Catalogo.png)
 * [mockup/Sobre.png](Sobre nós)
 * [mockup/DescricaoProduto.png](Descrição do produto)
 * [mockup/Carrinho.png](Carrinho)
