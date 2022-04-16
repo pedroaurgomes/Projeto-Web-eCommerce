@@ -1,6 +1,6 @@
 # Projeto-Web-eCommerce: Vintage Store
 
-![logo vintage store](/home/pedro/USP/5SEMESTRE/Web/ProjetoEcommerce/extra/logovintage.png)
+![logo vintage store](~/home/pedro/USP/5SEMESTRE/Web/ProjetoEcommerce/extra/logovintage.png)
 
 Trabalho desenvolvido para a disciplina de Introdução ao Desenvolvimento Web (SCC-0219), no primeiro semestre  de 2022, no ICMC -USP
 
