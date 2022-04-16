@@ -30,7 +30,7 @@ A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como 
 
 #### Diagrama de navegação:
 
-![diagrama de navegação](/extra/Diagrama\ de\ Navegação\ -\ Web.png "diagrama")]
+![diagrama de navegação](/extra/Diagrama\ de\ Navegação\ -\ Web.png "diagrama")
 
 ### 3. Comentários sobre o código
 
