@@ -1,4 +1,7 @@
 # Projeto-Web-eCommerce: Vintage Store
+
+![logo vintage store](/home/pedro/USP/5SEMESTRE/Web/ProjetoEcommerce/extra/logo.svg)
+
 Trabalho desenvolvido para a disciplina de Introdução ao Desenvolvimento Web (SCC-0219), no primeiro semestre  de 2022, no ICMC -USP
 
 AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves de segurança.
@@ -23,6 +26,8 @@ AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves 
 ### 1. Requisitos
 
 ### 2. Descrição do Projeto
+A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como base para a construção de um site de e-commerce para a disciplina.
+
 
 ### 3. Comentários sobre o código
 
