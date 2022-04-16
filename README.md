@@ -74,18 +74,18 @@ A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como 
 Verifique os mock-ups de todas as páginas na pasta "mockup", ou através dos links abaixo:
 
 * [Home page / Catálogo](mockup/Home_Catalogo.png)
-* [mockup/Sobre.png](Sobre nós)
-* [mockup/DescricaoProduto.png](Descrição do produto)
-* [mockup/Carrinho.png](Carrinho)
-* [mockup/Login.png](Login)
+* [Sobre nós](mockup/Sobre.png)
+* [Descrição do produto](mockup/DescricaoProduto.png)
+* [Carrinho](mockup/Carrinho.png)
+* [Login](mockup/Login.png)
 * [mockup/Cadastro.png](Cadastro)
-* [mockup/PedidosAdmin.png](Lista de pedidos (admin))
-* [mockup/GerenciamentoUsuarios.png](Gerenciamento de usuários)
-* [mockup/ListaProdudtos.png](Lista de Produtos )
-* [mockup/FormularioProduto.png](Formulário para edição de produtos)
-* [mockup/FinalizarCompra.png](FInalizar Compra (checkout))
-* [mockup/Minhaconta.png](Minha conta)
-* [mockup/Pedidos.png](Meus pedidos (cliente))
+* [Lista de pedidos (admin)](mockup/PedidosAdmin.png)
+* [Gerenciamento de usuários](mockup/GerenciamentoUsuarios.png)
+* [Lista de Produtos](mockup/ListaProdudtos.png)
+* [Formulário para edição de produtos](mockup/FormularioProduto.png)
+* [Finalizar Compra (checkout)](mockup/FinalizarCompra.png)
+* [Minha conta](mockup/Minhaconta.png)
+* [Meus pedidos (cliente)](mockup/Pedidos.png)
 
 
 ### 3. Comentários sobre o código
