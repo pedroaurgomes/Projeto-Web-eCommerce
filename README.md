@@ -7,21 +7,14 @@ AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves 
 
 ### Tabela de conteúdos
 
-[1. Requisitos](#1-requisitos)
-
-[2. Descrição do Projeto](#2-descricao-do-projeto)
-
-[3. Comentários sobre o código](#3-comentarios-sobre-o-codigo)
-
-[4. Plano de teste](#4-plano-de-teste)
-
-[5. Resultados dos testes](#5-resultados-dos-testes)
-
-[6. Building](#6-building)
-
-[7. Problemas](#7-problemas)
-
-[8. Comentários](#8-comentarios)
+1. [Requisitos](#1-requisitos)
+2. [Descrição do Projeto](#2-descriçao-do-projeto)
+3. [Comentários sobre o código](#3-comentarios-sobre-o-codigo)
+4. [Plano de teste](#4-plano-de-teste)
+5. [Resultados dos testes](#5-resultados-dos-testes)
+6. [Building](#6-building)
+7. [Problemas](#7-problemas)
+8. [Comentários](#8-comentarios)
 
 
 
