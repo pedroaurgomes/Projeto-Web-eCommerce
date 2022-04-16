@@ -78,7 +78,7 @@ Verifique os mock-ups de todas as páginas na pasta "mockup", ou através dos li
 * [Descrição do produto](mockup/DescricaoProduto.png)
 * [Carrinho](mockup/Carrinho.png)
 * [Login](mockup/Login.png)
-* [mockup/Cadastro.png](Cadastro)
+* [Cadastro](mockup/Cadastro.png)
 * [Lista de pedidos (admin)](mockup/PedidosAdmin.png)
 * [Gerenciamento de usuários](mockup/GerenciamentoUsuarios.png)
 * [Lista de Produtos](mockup/ListaProdudtos.png)
