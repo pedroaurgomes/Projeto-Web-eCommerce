@@ -26,7 +26,7 @@ AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves 
 O sistema possuirá dois tipos de usuários: clientes (usuários) a administradores.
 
 Teremos telas comuns para qualquer usuário, mesmo que não esteja logado,telas específicas para clientes e outras específicas para administradores.
-(o diagrama com as telas e os mock-ups podem ser vistos no item 2. [Descrição do Projeto](#2-descrição-do-projeto) ).
+(o diagrama com as telas e os mock-ups podem ser vistos no item [2. Descrição do Projeto](#2-descrição-do-projeto) ).
 
 Os administradores são os reponsáveis por gerenciar os clientes, produtos e os outros administradores do site.
   Obs: A aplicação já vem com uma conta padrão de administrador. Login: admin, Senha: admin.
