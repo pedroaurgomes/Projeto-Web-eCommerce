@@ -31,11 +31,9 @@ Teremos telas comuns para qualquer usuário, mesmo que não esteja logado,telas 
 Os administradores são os reponsáveis por gerenciar os clientes, produtos e os outros administradores do site.
   Obs: A aplicação já vem com uma conta padrão de administrador. Login: admin, Senha: admin.
 
-O registro dos administradores incluirá: nome, CPF, número de telefone e email. (endereço tbm ??)
+O registro de usuários incluirá: nome, CPF, número de telefone, email, endereço e permissão (admin ou cliente).
  
-O registro dos clientes incluirá: nome, CPF, endereço, número de telefone e email.
-
-Os registros dos produtos incluem nome, id (???), foto, descrição, preço, quantidade em estoque e quantidade vendida.
+Os registros dos produtos incluem nome, id (gerado automaticamente), foto, descrição, preço, quantidade em estoque e quantidade vendida.
 
 Venda de produtos: um usuário qualquer entra no site e tem acesso direto à página home, que corresponde ao catálogo de produtos. O usuário pode 
 selecionar um produto, ou usar a barra de buscar para fazer uma pesquisa específica, personalizada, (ver funcionalidade específica, abaixo) de acordo
