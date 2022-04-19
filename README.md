@@ -52,19 +52,13 @@ completar a operação.
 Após o cliente finalizar a compra, o número de produtos envolvidos na operação é subtraído do estoque e adicionado aos vendidos e o carrinho do cliente 
 é esvaziado.
 
-Gerenciamento de produtos: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock 
-quantity.
+Gerenciamento de produtos:
 
 Funcionalidade específica:   
 
-The system must provide accessibility requirements and provide good usability. The system must be responsive.
-
-
-
-
-
 ### 2. Descrição do Projeto
-A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como base para a construção de um site de e-commerce para a disciplina de Introdução ao Desenvolvimento Web.
+A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como base para a construção de um site de e-commerce para a disciplina de
+Introdução ao Desenvolvimento Web.
 
 
 #### Diagrama de navegação:
