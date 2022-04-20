@@ -20,20 +20,24 @@ AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves 
 8. [Comentários](#8-comentários)
 
 
-
-
 ### 1. Requisitos
-O sistema possuirá dois tipos de usuários: clientes (usuários) a administradores.
+O sistema possuirá dois tipos de usuários: clientes e administradores.
 
 Teremos telas comuns para qualquer usuário, mesmo que não esteja logado,telas específicas para clientes e outras específicas para administradores.
-(o diagrama com as telas e os mock-ups podem ser vistos no item [2. Descrição do Projeto](#2-descrição-do-projeto) ).
+(o diagrama com as telas e os mock-ups pode ser visto no item [2. Descrição do Projeto](#2-descrição-do-projeto) ).
 
 Os administradores são os reponsáveis por gerenciar os clientes, produtos e os outros administradores do site.
   Obs: A aplicação já vem com uma conta padrão de administrador. Login: admin, Senha: admin.
 
-O registro de usuários incluirá: nome, CPF, número de telefone, email, endereço e permissão (admin ou cliente).
- 
 Os registros dos produtos incluem nome, id (gerado automaticamente), foto, descrição, preço, quantidade em estoque e quantidade vendida.
+
+Gerenciamento de produtos: os administradores contarão com uma lista de todos os produtos da loja, a partir da qual poderão visualizar e editar todos
+os seus atributos.
+
+O registro de usuários incluirá: nome, CPF, número de telefone, email, endereço e cargo (admin ou cliente).
+
+Gerenciamento de usuários: os administradores contarão com uma lista de usuários a partir da qual poderão visualizar o nome dos usuários do site, bem 
+como modificar seu cargo.
 
 Venda de produtos: um usuário qualquer entra no site e tem acesso direto à página home, que corresponde ao catálogo de produtos. O usuário pode 
 selecionar um produto, ou usar a barra de buscar para fazer uma pesquisa específica, personalizada, (ver funcionalidade específica, abaixo) de acordo
@@ -45,14 +49,15 @@ Com todos os produtos desejados já adicionados no carrinho, o cliente poderá c
 campo específico - e poderá clicar no botão "finalizar" para ser direcionado à página que corresponde à etapa final da compra, onde o cliente definirá 
 o método de pagamento (débito ou crédito), colocará os dados do cartão, confirmará os produtos conprados e o valor total da compra e poderá concluir o
 pedido.
-É importante ressaltar que, se o clinte clicar sobre o botão de finalizar compra sem estar logado, ele será direcionado à página de login antes de 
+É importante ressaltar que, se o cliente clicar sobre o botão de finalizar compra sem estar logado, ele será direcionado à página de login antes de 
 completar a operação.
 Após o cliente finalizar a compra, o número de produtos envolvidos na operação é subtraído do estoque e adicionado aos vendidos e o carrinho do cliente 
 é esvaziado.
 
-Gerenciamento de produtos:
-
-Funcionalidade específica:   
+Funcionalidade específica: o sistema contará com um filtro personalizado de buscas na página de catálogo de produtos. O cliente poderá selecionar uma
+ou mais palavras-chave relacionadas à marca ou ao tipo da peça de roupa que ele está procurando e o sistema se encarregará de filtrar a consulta 
+requisitada pelo usuário. Por exemplo, o cliente pode estar querendo comprar calças que sejam da Nike ou da Adidas, para isso, ele poderá digitar as
+palavras-chave: "Nike", "Adidas" e "Calça", para visualizar somente as peças de roupa que atendam esses requisitos.
 
 ### 2. Descrição do Projeto
 A vintage Store é uma loja virtual fictícia de roupa masculina utilizada como base para a construção de um site de e-commerce para a disciplina de
