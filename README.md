@@ -54,6 +54,10 @@ completar a operação.
 Após o cliente finalizar a compra, o número de produtos envolvidos na operação é subtraído do estoque e adicionado aos vendidos e o carrinho do cliente 
 é esvaziado.
 
+Acompanhamento de pedidos: tanto os clientes quanto os administradores poderão acompanhar os pedidos feitos. Os admins conseguem ver todos os pedidos 
+feitos por todos os clientes e verificar: a data do pedido, os itens pedidos, o valor total do pedido e o status atual do pedido. Os clientes, por sua
+vez, têm acesso às mesmas informações, porém estão restritos a visualizar apenas os pedidos feitos na conta em que estão logados.
+
 Funcionalidade específica: o sistema contará com um filtro personalizado de buscas na página de catálogo de produtos. O cliente poderá selecionar uma
 ou mais palavras-chave relacionadas à marca ou ao tipo da peça de roupa que ele está procurando e o sistema se encarregará de filtrar a consulta 
 requisitada pelo usuário. Por exemplo, o cliente pode estar querendo comprar calças que sejam da Nike ou da Adidas, para isso, ele poderá digitar as
