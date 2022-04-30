@@ -6,6 +6,11 @@ Trabalho desenvolvido para a disciplina de Introdução ao Desenvolvimento Web (
 
 AVISO: Esse é um projeto realizado para fins educativos e tem problemas graves de segurança.
 
+## Grupo
+ * [Gabriel da Cunha Dertoni](https://github.com/GabrielDertoni) - nUSP: 11795717
+ * [João Victor Sene Araújo](https://github.com/JoaoVSene) - nUSP: 11796382
+ * [Pedro Augusto Ribeiro Gomes](https://github.com/pedroaurgomes) - nUSP: 11819125
+
 ## Project Report
 
 ### Tabela de conteúdos
@@ -100,11 +105,6 @@ Verifique os mock-ups de todas as páginas na pasta "mockup", ou através dos li
 ### 7. Problemas
 
 ### 8. Comentários
-
-## Grupo
- * [Gabriel da Cunha Dertoni](https://github.com/GabrielDertoni) - nUSP: 11795717
- * [João Victor Sene Araújo](https://github.com/JoaoVSene) - nUSP: 11796382
- * [Pedro Augusto Ribeiro Gomes](https://github.com/pedroaurgomes) - nUSP: 11819125
  
  ## Links
   * [Mockups no Figma](https://www.figma.com/file/pkmbaQasRYcu4X9yN1edqh/Web?node-id=0%3A1)
