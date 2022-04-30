@@ -100,7 +100,16 @@ Verifique os mock-ups de todas as páginas na pasta "mockup", ou através dos li
 
 ### 5. Resultados dos testes
 
-### 6. Building
+### 6. Compilando e rodando
+
+Para visualizar os mockups html entregues na **Milestone 1**, acessar a pasta html e rodar um servidor local simples, por exemplo:
+
+```bash
+cd html
+python3 -m http.server
+```
+
+Em seguida, acesse [http://localhost:8000](http://localhost:8000) para ver as páginas.
 
 ### 7. Problemas
 
