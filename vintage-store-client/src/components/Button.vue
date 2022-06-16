@@ -1,16 +1,9 @@
 <template>
-  <button class="button" @click="$emit('click')">{{ text }}</button>
+  <button class="button">
+    <slot/>
+  </button>
 </template>
-<script>
-export default {
-  props: {
-    text: {
-      type: String,
-      required: true,
-    },
-  },
-};
-</script>
+
 <style>
 .button {
   background-color: var(--blue);
