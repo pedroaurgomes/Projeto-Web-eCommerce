@@ -73,3 +73,25 @@ p.small-margin {
     margin-top: .4em;
     margin-bottom: .4em;
 }
+
+.flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.flex-col {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.gap-sm {
+    gap: 1em;
+}
+
+.page-height {
+    height: 80vh;
+}
