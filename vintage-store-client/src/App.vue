@@ -1,5 +1,5 @@
 <template>
-  <TopBar :type="userType"></TopBar>
+  <TopBar :type="$store.state.userStatus"></TopBar>
   <RouterView />
   <Footer></Footer>
 </template>
@@ -14,12 +14,11 @@ export default {
     Footer,
   },
   data: () => ({
-    userType: "newcomer",
   }),
 };
 </script>
 
 <style>
-@import "@/assets/base.css";
+@import "@/styles/base.css";
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 </style>
