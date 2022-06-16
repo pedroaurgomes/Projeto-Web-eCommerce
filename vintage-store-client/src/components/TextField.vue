@@ -68,6 +68,7 @@ export default {
   transition: border-color var(--transition-speed) ease;
   padding: 0.2em 0.6em;
   border-radius: 50px;
+  box-sizing: border-box;
 }
 
 .material-input:focus-within {
