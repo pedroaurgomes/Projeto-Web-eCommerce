@@ -14,9 +14,9 @@
         label="senha"
         name="Senha"
         placeholder="Senha..."
-        v-model="senha"
+        v-model="password"
       ></TextField>
-      <Button text="Login"></Button>
+      <Button @click="login">Login</Button>
     </div>
     <div class="center">
       <p>
@@ -37,7 +37,20 @@ export default {
   },
   data: () => ({
     email: "",
-    senha: "",
+    password: "",
   }),
+  methods: {
+    async login() {
+      const res = await this.$store.dispatch("login", { email: this.email, password: this.password });
+      if (res instanceof Error) {
+        this.email = "";
+        this.password = "";
+        alert(res.message);
+        return;
+      }
+
+      this.$router.back();
+    }
+  }
 };
 </script>

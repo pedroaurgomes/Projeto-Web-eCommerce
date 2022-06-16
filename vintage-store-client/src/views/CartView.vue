@@ -9,45 +9,51 @@
           <div>Qtd.</div>
           <div>Preço</div>
         </div>
-        <div v-for="(product, i) in products" class="col-5" :key="i">
-          <div>
-            <img v-if="product.imgSrc" :src="product.imgSrc" />
-            <img v-else src="@/assets/product_img_placeholder.png" />
+        <template v-if="cartItems.length > 0">
+          <div v-for="(item, i) in cartItems" class="col-5" :key="i">
+            <template v-if="item.product">
+              <div>
+                <img v-if="item.product.imgSrc" :src="item.product.imgSrc" />
+                <img v-else src="/assets/product_img_placeholder.png" />
+              </div>
+              <div class="span-cols-2">
+                <p class="small-margin bold">{{ item.product.title }}</p>
+                <p class="small-margin">{{ item.product.description }}</p>
+              </div>
+              <div>{{ item.ammount }}</div>
+              <div>{{ formatPrice(item.product.price) }}</div>
+              <div class="icons">
+                <i @click="removeProduct(item.productId)" class="fa-solid fa-x"></i>
+              </div>
+            </template>
+            <div v-else class="col-5">
+              Loading...
+            </div>
           </div>
-          <div class="span-cols-2">
-            <p class="small-margin bold">{{ product.title }}</p>
-            <p class="small-margin">{{ product.description }}</p>
-          </div>
-          <div>{{ product.ammount }}</div>
-          <div>{{ formatPrice(product.price) }}</div>
-          <div class="icons">
-            <i @click="removeProduct(i)" class="fa-solid fa-x"></i>
-          </div>
-        </div>
+        </template>
+        <p v-else>Nenhum item no carrinho ainda...</p>
       </div>
     </div>
   </main>
 </template>
+
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data: () => ({
-    products: [
-      {
-        title: "Produto 1",
-        description: "Descrição aqui...",
-        ammount: 10,
-        price: 10,
-        imgSrc: null,
-      },
-      {
-        title: "Produto 2",
-        description: "Descrição aqui...",
-        ammount: 10,
-        price: 10,
-        imgSrc: null,
-      },
-    ],
-  }),
+  data: () => ({}),
+  created() {
+    for (const item of this.cartItems) {
+      if (!item.products) {
+        this.$store.dispatch("fetchProduct", item.productId);
+      }
+    }
+  },
+  computed: {
+    ...mapGetters([
+      "cartItems",
+    ])
+  },
   methods: {
     formatPrice(price) {
       return price.toLocaleString("pt-BR", {
@@ -55,8 +61,8 @@ export default {
         currency: "BRL",
       });
     },
-    removeProduct(i) {
-      this.products.splice(i, 1);
+    removeProduct(id) {
+      this.$store.commit("removeFromCart", id);
     },
   },
 };
