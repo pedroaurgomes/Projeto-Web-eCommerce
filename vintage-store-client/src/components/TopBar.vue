@@ -120,7 +120,7 @@ header nav a {
 }
 
 header nav a:hover {
-  color: var(--light-gray);
+  color: var(--red);
 }
 
 .left-top-bar {
