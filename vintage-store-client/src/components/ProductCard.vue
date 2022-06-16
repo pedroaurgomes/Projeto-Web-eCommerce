@@ -2,7 +2,7 @@
   <div class="product" @click="$emit('click')">
     <div class="product-image">
       <img v-if="imgSrc" :src="imgSrc" />
-      <img v-else src="@/assets/product_img_placeholder.png" />
+      <img v-else src="/assets/product_img_placeholder.png" />
     </div>
     <div class="product-data">
       <h3>{{ title }}</h3>

@@ -12,7 +12,7 @@
       <ul id="members-list">
         <li>
           <a target="_blank" href="https://www.linkedin.com/in/gdertoni/">
-            <img src="@/assets/gabriel-profile.png" />
+            <img src="/assets/gabriel-profile.png" />
             <p>
               Gabriel da Cunha Dertoni <br />
               nUSP: 11796382
@@ -24,7 +24,7 @@
             target="_blank"
             href="https://www.linkedin.com/in/jo%C3%A3o-victor-sene-ara%C3%BAjo-2b5728229/"
           >
-            <img src="@/assets/joao-profile.png" />
+            <img src="/assets/joao-profile.png" />
             <p>
               João Victor Sene Araújo <br />
               nUSP: 11796382
@@ -33,7 +33,7 @@
         </li>
         <li>
           <a target="_blank" href="https://www.linkedin.com/in/pedroaurgomes/">
-            <img src="@/assets/pedro-profile.png" />
+            <img src="/assets/pedro-profile.png" />
             <p>
               Pedro Augusto Ribeiro Gomes <br />
               nUSP: 11819125
