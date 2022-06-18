@@ -1,13 +1,13 @@
 export default [
   {
-    id: "123.456.789-01",
-    name: "Joao o Dono",
-    email: "odono@vintagestore.com",
-    phone: "(12) 3456-7890",
-    address: "Some street, 1234",
-    city: "Hello City",
+    id: "",
+    name: "Admin",
+    email: "admin",
+    phone: "",
+    address: "",
+    city: "",
     extra: "",
-    password: "Some, world",
+    password: "admin",
     type: "admin",
   },
   {
