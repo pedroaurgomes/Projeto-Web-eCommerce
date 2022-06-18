@@ -6,33 +6,39 @@
       <div class="flex-col gap-sm">
         <TextField
           label="name"
+          name="Nome"
           v-model="name"
           placeholder="..."
         />
         <TextField
           label="email"
+          name="Email"
           v-model="email"
           placeholder="..."
         />
         <TextField
           label="address"
+          name="Endereço"
           v-model="address"
           placeholder="..."
         />
         <div class="flex-row flex-space-between">
           <TextField
             label="city"
+            name="Cidade"
             v-model="city"
             placeholder="..."
           />
           <TextField
             label="extra"
+            name="Complemento"
             v-model="extra"
             placeholder="..."
           />
         </div>
         <TextField
           label="phone"
+          name="Telefone"
           v-model="phone"
           placeholder="..."
         />
