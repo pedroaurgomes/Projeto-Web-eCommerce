@@ -33,6 +33,7 @@
           :title="product.title"
           :brand="product.brand"
           :price="product.price"
+          :imgSrc="product.imgSrc"
           @click="gotoProduct(product.id)"
         ></ProductCard>
       </div>
