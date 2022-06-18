@@ -48,6 +48,9 @@ const store = createStore({
     navigationError(state, errorMsg) {
       state.navigationError = errorMsg;
     },
+    clearNavigationError(state) {
+      state.navigationError = null;
+    },
     addToCart(state, item) {
       state.cartItems.push(item);
       // Store it in localStorage as well.

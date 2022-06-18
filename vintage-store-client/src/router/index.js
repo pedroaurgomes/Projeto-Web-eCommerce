@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import { Error } from "./errors";
 import { Role } from "@/roles";
 import store from "@/store";
 
@@ -44,16 +45,31 @@ const router = createRouter({
       component: () => import("../views/AccountView.vue"),
       meta: { authorize: Role.Customer | Role.Admin }
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "404",
+      component: () => import("../views/Error404View.vue"),
+      meta: { authorize: Role.Any }
+    },
   ],
 });
 
-
 router.beforeEach(async (to, from) => {
   if (!(to.meta.authorize & store.getters.userRole)) {
-    // If it is a newcomer, redirect to the login page.
-    if (store.getters.userRole === Role.Newcomer) return { name: "login" };
-    return false;
+    // If it is a newcomer (user is not logged in), redirect to the login page.
+    if (store.getters.userRole === Role.Newcomer) {
+      store.commit("navigationError", Error.NotLoggedIn);
+      return {
+        name: "login",
+        query: { from: from.name }
+      };
+    }
+
+    // Unauthorized, redirect the user back to the `from` page.
+    store.commit("navigationError", Error.Unauthorized);
+    return from;
   }
+  store.commit("navigationError", Error.None);
   return true;
 })
 
