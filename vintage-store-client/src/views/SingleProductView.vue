@@ -10,8 +10,9 @@
         <select v-model="selectedColor">
           <option v-for="(color, i) in colors" :key="i" :value="i">{{ color }}</option>
         </select>
-        <input label="quantity" type="number" v-model="quantity">
-        <p>{{ formattedPrice }}</p>
+        <input label="quantity" type="number" v-model="quantity" min="1">
+        <p>Total: {{ formatPrice(price * quantity) }}</p>
+        <p>Unitário: {{ formatPrice(price) }} ({{ quantity }}x)</p>
         <Button @click="addToCart">Comprar</Button>
       </div>
     </div>
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+import { formatPrice } from "@/utils";
+
 import Button from "@/components/Button.vue";
 import Loading from "@/components/Loading.vue";
 
@@ -53,14 +56,9 @@ export default {
     id() {
       return parseInt(this.$route.params.id);
     },
-    formattedPrice() {
-      return this.price.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-    }
   },
   methods: {
+    formatPrice,
     addToCart() {
       this.$store.commit("addToCart", {
         productId: this.id,

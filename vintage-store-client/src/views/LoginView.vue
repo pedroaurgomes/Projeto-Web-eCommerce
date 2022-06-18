@@ -21,23 +21,27 @@
     <div class="center">
       <p>
         Não possui conta?
-        <router-link to="register">Cadastre-se agora!</router-link>
+        <a href="#" @click="showRegisterModal = true">Cadastre-se agora!</a>
       </p>
     </div>
+    <RegisterModal v-if="showRegisterModal" @clickOutside="showRegisterModal = false"/>
   </main>
 </template>
 <script>
 import TextField from "@/components/TextField.vue";
 import Button from "@/components/Button.vue";
+import RegisterModal from "@/components/RegisterModal.vue";
 
 export default {
   components: {
     TextField,
     Button,
+    RegisterModal,
   },
   data: () => ({
     email: "",
     password: "",
+    showRegisterModal: false,
   }),
   methods: {
     async login() {

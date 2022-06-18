@@ -88,8 +88,13 @@ p.small-margin {
     justify-content: space-between;
 }
 
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .gap-sm {
-    gap: 1em;
+    gap: .5em;
 }
 
 .page-height {

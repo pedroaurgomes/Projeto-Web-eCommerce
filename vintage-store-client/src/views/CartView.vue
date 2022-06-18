@@ -20,8 +20,8 @@
                 <p class="small-margin bold">{{ item.product.title }}</p>
                 <p class="small-margin">{{ item.product.description }}</p>
               </div>
-              <div>{{ item.ammount }}</div>
-              <div>{{ formatPrice(item.product.price) }}</div>
+              <div>{{ item.quantity }}</div>
+              <div>{{ formatPrice(item.quantity * item.product.price) }}</div>
               <div class="icons">
                 <i @click="removeProduct(item.productId)" class="fa-solid fa-x"></i>
               </div>
@@ -40,6 +40,8 @@
 <script>
 import { mapGetters } from "vuex";
 
+import { formatPrice } from "@/utils";
+
 export default {
   data: () => ({}),
   created() {
@@ -55,12 +57,7 @@ export default {
     ])
   },
   methods: {
-    formatPrice(price) {
-      return price.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-    },
+    formatPrice,
     removeProduct(id) {
       this.$store.commit("removeFromCart", id);
     },

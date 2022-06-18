@@ -47,17 +47,17 @@
           />
         </svg>
       </router-link>
-      <Chip v-if="type === 'admin'" text="admin" :deletable="false" />
+      <Chip v-if="role === Role.Admin" text="admin" :deletable="false" />
     </div>
     <nav>
-      <template v-if="type === 'customer'">
+      <template v-if="role === Role.Customer">
         <router-link to="/">Home</router-link>
         <router-link to="/about">Sobre</router-link>
         <router-link to="/cart">Carrinho</router-link>
-        <router-link to="/account">Minha Conta</router-link>
         <router-link to="/orders">Pedidos</router-link>
+        <router-link to="/account">Minha Conta</router-link>
       </template>
-      <template v-else-if="type === 'admin'">
+      <template v-else-if="role === Role.Admin">
         <router-link to="/products">Produtos</router-link>
         <router-link to="/users">Usuário</router-link>
         <router-link to="/account">Minha Conta</router-link>
@@ -75,20 +75,24 @@
 <script>
 import Chip from "@/components/Chip.vue";
 
+import { Role } from "@/roles";
+
 export default {
   components: {
     Chip,
   },
   props: {
-    type: {
-      type: String,
+    role: {
+      type: Number,
       required: false,
-      default: "newcomer",
+      default: Role.Newcomer,
     },
   },
-  data() {
-    return {};
-  },
+  data: () => ({
+    // This is not supposed to be reactive, it is a contant
+    // that we'd like to make available in the <template> segment
+    Role,
+  })
 };
 </script>
 

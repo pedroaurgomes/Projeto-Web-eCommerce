@@ -1,12 +1,28 @@
 <template>
-  <button class="button">
-    <slot/>
+  <button class="button" :style="style">
+    <slot></slot>
   </button>
 </template>
-
+<script>
+export default {
+  props: {
+    color: {
+      type: String,
+      required: false,
+      default: "blue"
+    }
+  },
+  computed: {
+    style() {
+      return {
+        backgroundColor: `var(--${this.color})`
+      }
+    }
+  }
+}
+</script>
 <style>
 .button {
-  background-color: var(--blue);
   border: none;
   color: white;
   padding: 0.625em 1.25em;
