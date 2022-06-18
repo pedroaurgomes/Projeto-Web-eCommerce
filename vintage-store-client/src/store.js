@@ -62,6 +62,9 @@ const store = createStore({
       state.cartItems.splice(idx, 1);
       localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
+    clearCart(state) {
+      state.cartItems = [];
+    },
     tryLoadCartFromLocalStorage(state) {
       const cart = localStorage.getItem("cart");
       if (!cart) return;

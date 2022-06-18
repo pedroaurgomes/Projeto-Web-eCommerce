@@ -149,6 +149,9 @@ export default {
     submit() {
       // TODO: form validation
 
+      alert("Compra concluida com sucesso!");
+      this.$store.commit("clearCart");
+      this.$router.replace({ name: "home" });
     }
   },
 };
