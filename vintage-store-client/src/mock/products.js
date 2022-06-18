@@ -1,76 +1,44 @@
 export default [
     {
         id: 0,
-<<<<<<< HEAD
         title: "EMO TILL DEATH",
         brand: "LOLJA",
         price: 199.99,
         description: "Moletom preto com bolso canguru",
         colors: ["Preto"],
-=======
-        title: "T-shirt",
-        brand: "Alguma marca",
-        price: 50.99,
-        description: "Muito bão!",
-        colors: ["Vermelho", "Verde", "Azul"],
->>>>>>> 6ac0735d287d1d4ba0677b5ed687bfccfcb62cd5
         defaultColor: 0,
         imgSrc: "/assets/products/sweatshirt1.png",
         longDescription: "Malha preta com estampa nas costas, se vê escrito em rosa e em inglês “Emo till Death”, em português “Emo até a morte”. Embaixo se vê um crânio com franja preta caída sobre a região dos olhos, envolto de rosas vermelhas.",
     },
     {
         id: 1,
-<<<<<<< HEAD
         title: "NO TENGO",
         brand: "LOLJA",
         price: 199.99,
         description: "Moletom preto com forro mostarda",
         colors: ["Preto/Mostarda"],
-=======
-        title: "T-shirt",
-        brand: "Alguma marca",
-        price: 50.99,
-        description: "Muito bão!",
-        colors: ["Vermelho", "Verde", "Azul"],
->>>>>>> 6ac0735d287d1d4ba0677b5ed687bfccfcb62cd5
         defaultColor: 0,
         imgSrc: "/assets/products/sweatshirt2.png",
         longDescription: "Malha preta com estampa na frente, se vê uma manete de vídeo games cinza com detalhes vermelhos e laranjas.",
     },
     {
         id: 2,
-<<<<<<< HEAD
         title: "UNDEAD",
         brand: "LOLJA",
         price: 199.99,
         description: "Moletom Preto",
         colors: ["Preto"],
-=======
-        title: "T-shirt",
-        brand: "Alguma marca",
-        price: 50.99,
-        description: "Muito bão!",
-        colors: ["Vermelho", "Verde", "Azul"],
->>>>>>> 6ac0735d287d1d4ba0677b5ed687bfccfcb62cd5
         defaultColor: 0,
         imgSrc: "/assets/products/sweatshirt3.png",
         longDescription: "Malha preta com estampa na frente, se vê um crânio com capacete de samurai, com duas katanas (espadas samurais) cruzadas atrás. Acima está escrito em vermelho e em inglês “Undead”, em português “Morto-vivo”.",
     },
     {
         id: 3,
-<<<<<<< HEAD
         title: "MOON CHILD",
         brand: "Alguma marca",
         price: 199.99,
         description: "Moletom sobreposição preto e lilás",
         colors: ["Preto/Lilás"],
-=======
-        title: "T-shirt",
-        brand: "Alguma marca",
-        price: 50.99,
-        description: "Muito bão!",
-        colors: ["Vermelho", "Verde", "Azul"],
->>>>>>> 6ac0735d287d1d4ba0677b5ed687bfccfcb62cd5
         defaultColor: 0,
         imgSrc: "/assets/products/sweatshirt4.png",
         longDescription: "Malha preta, com forro e sobreposição nas mangas lilás, com estampa na frente, se vê uma menina com luvas, uma camiseta cropped e uma saia lilás, com cabelo longo e alaranjado. Atrás dela se vê uma meia lua na horizontal.",
