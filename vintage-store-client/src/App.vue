@@ -54,5 +54,6 @@ export default {
 
 <style>
 @import "@/styles/base.css";
+@import "@/styles/utils.css";
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 </style>

@@ -66,46 +66,13 @@ export default {
 </script>
 
 <style>
-.table {
-  width: 100%;
-  max-width: 1200px;
+@import url("@/styles/table.css");
+
+.price-info {
+  font-size: 1.3em;
 }
 
-.table img {
-  width: 100%;
-}
-
-.table .col-5 {
-  display: grid;
-  grid-template-columns: minmax(50px, 100px) repeat(5, 1fr);
-  gap: 15px;
-  padding: 0 0.5em;
-  align-items: center;
-  border-bottom: solid 1px var(--dark-gray);
-  margin-bottom: 1em;
-}
-
-.table .span-cols-2 {
-  grid-column: span 2;
-}
-
-.table .table-head {
-  margin-bottom: 0.4em;
-  padding-bottom: 0.4em;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.table .icons {
-  justify-self: end;
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 1em;
-}
-
-.table i {
-  color: var(--red);
-  font-weight: bolder;
-  cursor: pointer;
+.price-info p {
+  margin: 0;
 }
 </style>

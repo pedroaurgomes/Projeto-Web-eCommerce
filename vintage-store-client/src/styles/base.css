@@ -7,6 +7,7 @@
   --yellow: #f2c94c;
   --purple: #BB6BD9;
   --blue: #56ccf2;
+  --dark-blue: #2973d3;
   --very-light-gray: #e0e0e0;
   --light-gray: #BDBDBD;
   --dark-gray: #828282;
@@ -14,6 +15,7 @@
   --main-column-padding: 10%;
   --transition-speed: 200ms;
   --fast-transition-speed: 100ms;
+
   font-family: 'Inter', sans-serif;
 }
 
@@ -42,61 +44,11 @@ ol, ul {
     list-style: none;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.3125em;
-}
-
-.center-text {
-    text-align: center;
-}
-
-.main-column {
-    padding-left: var(--main-column-padding);
-    padding-right: var(--main-column-padding);
-}
-
-.center-column {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 1em;
-    align-items: center;
-}
-
-.bold {
-    font-weight: bold;
-}
-
 p.small-margin {
     margin-top: .4em;
     margin-bottom: .4em;
 }
 
-.flex-row {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.flex-col {
-    display: flex;
-    flex-flow: column nowrap;
-}
-
-.flex-space-between {
-    justify-content: space-between;
-}
-
-.grid-2-cols {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.gap-sm {
-    gap: .5em;
-}
-
-.page-height {
-    height: 80vh;
+fieldset {
+    border-radius: 10px;
 }

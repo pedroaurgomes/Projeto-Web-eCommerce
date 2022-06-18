@@ -1,0 +1,70 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3125em;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.main-column {
+    padding-left: var(--main-column-padding);
+    padding-right: var(--main-column-padding);
+}
+
+.center-column {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    align-items: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Flexbox stuff */
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.flex-bottom {
+    align-self: flex-end;
+}
+
+.flex-center {
+    align-self: center;
+}
+
+
+/* Grid stuff */
+
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gap-sm {
+    gap: .5em;
+}
+
+.gap-md {
+    gap: 1em;
+}
+
+.page-height {
+    height: 80vh;
+}
