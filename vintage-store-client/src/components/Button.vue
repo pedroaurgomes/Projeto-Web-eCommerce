@@ -1,22 +1,71 @@
 <template>
-  <button class="button" :style="style">
+  <button
+    class="button"
+    :class="classList"
+    :style="style"
+    ref="button"
+  >
     <slot></slot>
   </button>
 </template>
 <script>
 export default {
   props: {
+    // Allowed values are "filled" and "outlined"
+    type: {
+      type: String,
+      required: false,
+      default: "filled",
+    },
     color: {
       type: String,
       required: false,
       default: "blue"
+    },
+    hoverColor: {
+      type: String,
+      required: false,
+      default: "dark-blue"
+    },
+    // Allowed values are "sm", "small", "md", "medium", "lg", "large", "xl", "extra-large"
+    size: {
+      type: String,
+      require: false,
+      default: "md",
     }
   },
   computed: {
     style() {
-      return {
-        backgroundColor: `var(--${this.color})`
+      if (this.type === "filled") {
+        return {
+          backgroundColor: `var(--${this.color})`
+        }
+      } else {
+        return {
+          borderColor: `var(--${this.color})`,
+          color: "var(--black)",
+        }
       }
+    },
+    // Returns the name of the class for the specific size
+    normalizedSize() {
+      switch (this.size) {
+        case "sm":
+        case "small": return "btn-sm";
+        case "md":
+        case "medium": return "btn-md";
+        case "lg":
+        case "large": return "btn-lg";
+        case "xl":
+        case "extra-large": return "btn-xl";
+        default: return "btn-md";
+      }
+    },
+    classList() {
+      const list = [];
+      if (this.type === "outlined") list.push("outlined");
+      list.push(this.normalizedSize);
+      return list.join(" ");
     }
   }
 }
@@ -25,7 +74,6 @@ export default {
 .button {
   border: none;
   color: white;
-  padding: 0.625em 1.25em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -33,9 +81,33 @@ export default {
   border-radius: 50px;
   cursor: pointer;
   transition: box-shadow var(--transition-speed) ease;
+  transition: background-color var(--transition-speed) ease;
+  box-sizing: border-box;
+  height: fit-content;
+  width: fit-content;
 }
 
 .button:hover {
   box-shadow: var(--dark-gray) 2px 2px 4px 0px;
 }
+
+.button.outlined {
+  border: 2px solid;
+  background-color: transparent;
+}
+
+.button.btn-sm {
+  padding: 0.3em 1.25em;
+}
+
+.button.btn-md {
+  padding: 0.625em 1.25em;
+}
+
+.button.btn-lg {
+  padding: 0.625em 1.25em;
+  font-size: 1.4rem;
+}
+
+/* TODO: define "btn-xl" */
 </style>

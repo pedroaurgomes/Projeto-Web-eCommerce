@@ -1,18 +1,31 @@
 <template>
-  <fieldset
-    class="material-input"
-    :class="{ 'input-expand-transition': expandTransition }"
-  >
-    <input
-      type="text"
-      :placeholder="placeholder"
-      :label="label"
-      :value="modelValue"
-      @input="emitInputEvent"
-      @keydown.enter="emitSubmitEvent"
-    />
-    <i v-if="iconClass" :class="iconClass" @click="emitSubmitEvent"></i>
-  </fieldset>
+  <div class="material-input-container">
+    <fieldset
+      class="material-input"
+      :class="{
+        'input-expand-transition': expandTransition,
+        'content': this.modelValue.length > 0,
+        'named': !this.unnamed,
+        'unnamed': this.unnamed,
+      }"
+      :style="fieldsetStyle"
+    >
+      <legend>{{ name }}</legend>
+      <input
+        type="text"
+        :placeholder="nameOrPlaceholder"
+        :label="label"
+        :value="modelValue"
+        :style="inputStyle"
+        @input="emitInputEvent"
+        @keydown.enter="emitSubmitEvent"
+        @focus="hasFocus = true"
+        @blur="hasFocus = false"
+        :disabled="this.unnamed"
+      />
+      <i v-if="iconClass" :class="iconClass" @click="emitSubmitEvent"></i>
+    </fieldset>
+  </div>
 </template>
 <script>
 export default {
@@ -45,8 +58,40 @@ export default {
       required: false,
       default: false,
     },
+    width: {
+      type: Number,
+      required: false,
+      default: 15,
+    },
+    unnamed: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
   },
-  data: () => ({}),
+  data: () => ({
+    hasFocus: false,
+  }),
+  computed: {
+    nameOrPlaceholder() {
+      return this.hasFocus ? this.placeholder : this.name;
+    },
+    inputStyle() {
+      return { width: `${this.width}em` };
+    },
+    fieldsetStyle() {
+      if (this.unnamed) {
+        return {
+          backgroundColor: "var(--light-gray)",
+          color: "var(--black)",
+          border: "none",
+          fontWeight: "bold",
+        }
+      } else {
+        return {};
+      }
+    }
+  },
   methods: {
     emitInputEvent(event) {
       this.$emit("update:modelValue", event.target.value);
@@ -58,7 +103,17 @@ export default {
 };
 </script>
 <style>
+.material-input-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: .1em;
+}
+
 .material-input {
+  --legend-font-size: .8rem;
+  --padding-top-bottom: .2em;
+
+  justify-self: flex-end;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -66,7 +121,11 @@ export default {
   width: fit-content;
   border: 2px solid var(--dark-gray);
   transition: border-color var(--transition-speed) ease;
-  padding: 0.2em 0.6em;
+  margin-top: calc(var(--legend-font-size) / 2);
+  padding-top: calc(var(--padding-top-bottom) + var(--legend-font-size) / 2);
+  padding-bottom: calc(var(--padding-top-bottom) + var(--legend-font-size) / 2);
+  padding-left: 0.6em;
+  padding-right: 0.6em;
   border-radius: 50px;
   box-sizing: border-box;
 }
@@ -75,10 +134,18 @@ export default {
   border: 2px solid var(--black);
 }
 
-.material-input input {
+.material-input:focus-within.named, .material-input.named.content {
+  padding-top: var(--padding-top-bottom);
+  margin-top: 0;
+}
+
+.material-input > input {
+  background-color: transparent;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
   border: none;
   outline: none;
-  width: 15em;
 }
 
 .material-input.input-expand-transition input {
@@ -106,5 +173,14 @@ export default {
 
 .material-input:focus-within > i {
   color: var(--black);
+}
+
+.material-input > legend {
+  display: none;
+}
+
+.material-input.named:focus-within > legend, .material-input.named.content > legend {
+  display: block !important;
+  font-size: var(--legend-font-size);
 }
 </style>
