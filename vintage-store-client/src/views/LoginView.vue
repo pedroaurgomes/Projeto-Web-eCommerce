@@ -53,7 +53,9 @@ export default {
         return;
       }
 
-      this.$router.back();
+      this.$router.replace({
+        name: this.$route.query.from || 'account'
+      });
     }
   }
 };

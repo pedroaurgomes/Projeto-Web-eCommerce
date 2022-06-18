@@ -48,6 +48,9 @@ const store = createStore({
     navigationError(state, errorMsg) {
       state.navigationError = errorMsg;
     },
+    clearNavigationError(state) {
+      state.navigationError = null;
+    },
     addToCart(state, item) {
       state.cartItems.push(item);
       // Store it in localStorage as well.
@@ -58,6 +61,9 @@ const store = createStore({
       if (idx < 0) return;
       state.cartItems.splice(idx, 1);
       localStorage.setItem("cart", JSON.stringify(state.cartItems));
+    },
+    clearCart(state) {
+      state.cartItems = [];
     },
     tryLoadCartFromLocalStorage(state) {
       const cart = localStorage.getItem("cart");
