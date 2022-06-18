@@ -2,7 +2,8 @@
   <Loading v-if="isLoading"/>
   <main v-else class="main-column">
     <div class="flex-row gap-sm">
-      <img src="/assets/product_img_placeholder.png" />
+      <img v-if="imgSrc" :src="imgSrc" />
+      <img v-else src="/assets/product_img_placeholder.png" />
       <div class="flex-col">
         <h3>{{ title }}</h3>
         <h4>{{ brand }}</h4>
@@ -18,7 +19,7 @@
     </div>
     <div>
       <h2>Detalhes do produto</h2>
-      <p>Detalhação extensa...</p>
+      <p>{{longDescription}}</p>
     </div>
   </main>
 </template>
@@ -40,6 +41,8 @@ export default {
     brand: null,
     description: null,
     price: null,
+    imgSrc: null,
+    longDescription: null,
     colors: [],
 
     // Inputs that can be changed by the user.
@@ -75,7 +78,9 @@ export default {
       this.brand = product.brand;
       this.description = product.description;
       this.price = product.price;
+      this.imgSrc = product.imgSrc;
       this.colors = product.colors;
+      this.longDescription = product.longDescription;
       this.selectedColor = product.defaultColor;
     }
   }
