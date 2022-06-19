@@ -1,5 +1,5 @@
-import * as HARDCODED_PRODUCTS from "./products";
-import * as HARDCODED_USERS from "./registered_users";
+import HARDCODED_PRODUCTS from "./products";
+import HARDCODED_USERS from "./registered_users";
 
 const USER_PROPERTIES = {
   "id": String,
