@@ -24,8 +24,14 @@
       v-model="description"
       :width="30"
     ></TextField>
-    <p>/* Componente de text area aqui */</p>
-    <!-- TODO: Text area component goes here -->
+    <TextArea
+      label="longDescription"
+      name="Detalhes"
+      placeholder="Descrição longa..."
+      v-model="longDescription"
+      :width="36"
+     
+    ></TextArea>
     <TextField
       label="price"
       name="Preço"
@@ -50,12 +56,14 @@
 import TextField from "@/components/TextField.vue";
 import Button from "@/components/Button.vue";
 import LoadingModal from "@/components/LoadingModal.vue";
+import TextArea from "@/components/TextArea.vue"
 
 export default {
   components: {
     TextField,
     Button,
     LoadingModal,
+    TextArea,
   },
   data: () => ({
     isLoading: true,

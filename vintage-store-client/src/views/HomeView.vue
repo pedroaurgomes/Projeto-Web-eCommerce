@@ -1,8 +1,9 @@
 <template>
   <Loading v-if="isLoading" />
   <template v-else>
-    <section id="home-image">
-      <fieldset>
+    <!-- <section id="home-image"> -->
+    <CarouselManager></CarouselManager>
+      <!-- <fieldset>
         <input
           type="radio"
           id="home-image-01"
@@ -11,8 +12,8 @@
         />
         <input type="radio" id="home-image-02" name="home-image-carousels" />
         <input type="radio" id="home-image-03" name="home-image-carousels" />
-      </fieldset>
-    </section>
+      </fieldset> -->
+    <!-- </section> -->
     <main class="main-column">
       <div>
         <TextField
@@ -48,6 +49,7 @@ import ProductCard from "@/components/ProductCard.vue";
 import TextField from "@/components/TextField.vue";
 import FilterList from "@/components/FilterList.vue";
 import Loading from "@/components/Loading.vue";
+import CarouselManager from "@/components/CarouselManager.vue"
 
 export default {
   components: {
@@ -55,6 +57,7 @@ export default {
     TextField,
     FilterList,
     Loading,
+    CarouselManager,
   },
   data: () => ({
     search: "",
@@ -96,7 +99,7 @@ export default {
   gap: 1em;
 }
 
-#home-image {
+/* #home-image {
   background-color: var(--green);
   width: 100%;
   height: 60vh;
@@ -126,5 +129,5 @@ export default {
 
 #home-image > fieldset > input[type="radio"]:checked {
   background-color: var(--dark-gray);
-}
+} */
 </style>

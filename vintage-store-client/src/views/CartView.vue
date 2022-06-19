@@ -22,7 +22,8 @@
                 <p class="small-margin">{{ item.product.description }}</p>
               </div>
               <div>{{ item.color }}</div>
-              <div>{{ item.quantity }}</div>
+              <!-- <div>{{ item.quantity }}</div> -->
+              <Counter :textSize="2" isMutable="true"></Counter>
               <div>{{ formatPrice(item.quantity * item.product.price) }}</div>
               <div class="icons">
                 <i @click="removeProduct(item.productId)" class="fa-solid fa-x red"></i>
@@ -108,11 +109,13 @@ import { formatPrice } from "@/utils";
 
 import TextField from "@/components/TextField.vue";
 import Button from "@/components/Button.vue";
+import Counter from "@/components/Counter.vue";
 
 export default {
   components: {
     TextField,
     Button,
+    Counter,
   },
   data: () => ({
     zipCode: "",
@@ -134,7 +137,7 @@ export default {
       const shipping = this.shippingCost || 0;
       let sum = this.cartItems
         .filter(item => !!item.product)
-        .reduce((acc, item) => acc + item.product.price, 0);
+        .reduce((acc, item) => acc + item.product.price*item.quantity, 0);
       return shipping + sum;
     },
     ...mapGetters([
