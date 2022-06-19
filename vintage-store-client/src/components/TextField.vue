@@ -111,7 +111,7 @@ export default {
 
 .material-input {
   --legend-font-size: .8rem;
-  --padding-top-bottom: .2em;
+  --padding-top-bottom: 0em;
 
   justify-self: flex-end;
   display: flex;

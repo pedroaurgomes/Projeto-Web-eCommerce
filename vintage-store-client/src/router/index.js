@@ -46,6 +46,30 @@ const router = createRouter({
       meta: { authorize: Role.Customer | Role.Admin }
     },
     {
+      path: "/users",
+      name: "users",
+      component: () => import("../views/UsersAdminView.vue"),
+      meta: { authorize: Role.Admin }
+    },
+    {
+      path: "/products",
+      name: "products",
+      component: () => import("../views/ProductListAdminView.vue"),
+      meta: { authorize: Role.Admin }
+    },
+    {
+      path: "/editProduct/:id",
+      name: "editProduct",
+      component: () => import("../views/ProductFormAdminView.vue"),
+      meta: { authorize: Role.Admin }
+    },
+    {
+      path: "/addProduct",
+      name: "addProduct",
+      component: () => import("../views/ProductFormAdminView.vue"),
+      meta: { authorize: Role.Admin }
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "404",
       component: () => import("../views/Error404View.vue"),

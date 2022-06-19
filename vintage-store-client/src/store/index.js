@@ -2,8 +2,12 @@ import { createStore } from "vuex";
 
 import { Role, userTypeToRole } from "@/roles";
 import * as mock from "@/mock";
+import userAdmin from "./modules/userAdmin";
 
 const store = createStore({
+  modules: {
+    userAdmin,
+  },
   state: () => ({
     // TODO: Store some of this data on the server
     user: {
@@ -19,7 +23,7 @@ const store = createStore({
     },
     userRole: Role.Newcomer,
 
-    cachedProducts: [],
+    cachedProducts: {},
 
     // Products added to the cart. Each element contains the id,
     // the quantity and color of the product.
@@ -29,10 +33,10 @@ const store = createStore({
   getters: {
     userRole: state => state.userRole,
     user: state => state.user,
-    products: state => state.cachedProducts,
+    products: state => Object.values(state.cachedProducts),
     // This getter uses the product id to find the product.
     // If the product is not in cache, null is returned instead.
-    product: state => id => state.cachedProducts.find(p => p.id === id) || null,
+    product: state => id => state.cachedProducts[id] || null,
     cartItems: (state, getters) => {
       return state.cartItems.map(item => ({
         product: getters.product(item.productId),
@@ -45,12 +49,9 @@ const store = createStore({
     },
   },
   mutations: {
-    navigationError(state, errorMsg) {
-      state.navigationError = errorMsg;
-    },
-    clearNavigationError(state) {
-      state.navigationError = null;
-    },
+    removeProduct: (state, productId) => delete state.cachedProducts[productId],
+    navigationError: (state, errorMsg) => state.navigationError = errorMsg,
+    clearNavigationError: state => state.navigationError = null,
     addToCart(state, item) {
       state.cartItems.push(item);
       // Store it in localStorage as well.
@@ -62,9 +63,7 @@ const store = createStore({
       state.cartItems.splice(idx, 1);
       localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
-    clearCart(state) {
-      state.cartItems = [];
-    },
+    clearCart: state => state.cartItems = [],
     tryLoadCartFromLocalStorage(state) {
       const cart = localStorage.getItem("cart");
       if (!cart) return;
@@ -81,9 +80,7 @@ const store = createStore({
       state.userRole = userTypeToRole(user.type);
       state.user = user;
     },
-    addProductToCache(state, product) {
-      state.cachedProducts.push(product);
-    },
+    addProductToCache: (state, product) => state.cachedProducts[product.id] = product,
     resetUser(state) {
       state.user.name = null;
       state.user.id = null;
@@ -117,6 +114,24 @@ const store = createStore({
       if (p) return p;
       return await dispatch("fetchProduct", productId);
     },
+    async deleteProduct({ commit }, productId) {
+      const res = await mock.deleteProduct(productId);
+      if (!res.ok) return new Error(res.error);
+      commit("removeProduct", productId);
+      return true;
+    },
+    async createProduct({ commit }, product) {
+      const res = await mock.createProduct(product);
+      if (!res.ok) return new Error(res.error);
+      commit("addProductToCache", res.product);
+      return res.product;
+    },
+    async updateProduct({ commit }, product) {
+      const res = await mock.updateProduct(product);
+      if (!res.ok) return new Error(res.error);
+      commit("addProductToCache", res.product);
+      return res.product;
+    },
     async login({ commit }, { email, password }) {
       const res = await mock.login({ email, password });
       if (!res.ok) return new Error(res.error);
@@ -129,8 +144,8 @@ const store = createStore({
       commit("registerUser", user);
       return res.user;
     },
-    async updateUser({ commit }, user) {
-      const res = await mock.updateUser(user);
+    async updateCurrentUser({ commit }, user) {
+      const res = await mock.updateCurrentUser(user);
       if (!res.ok) return new Error(res.error);
       commit("registerUser", res.user);
       return res.user;

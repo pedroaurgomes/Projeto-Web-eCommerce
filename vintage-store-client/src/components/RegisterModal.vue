@@ -97,8 +97,7 @@ export default {
         return;
       }
 
-      // Go back to the previous page
-      this.$router.replace({ name: "account" });
+      this.$router.push({ name: "account" });
     }
   }
 }

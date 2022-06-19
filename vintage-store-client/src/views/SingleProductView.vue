@@ -68,9 +68,7 @@ export default {
         color: this.colors[this.selectedColor],
         quantity: this.quantity,
       });
-      this.$router.replace({
-        name: "cart"
-      })
+      this.$router.push({ name: "cart" });
     },
     async fetchProduct() {
       const product = await this.$store.dispatch("fetchOrGetProduct", this.id);

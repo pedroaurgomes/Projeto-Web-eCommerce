@@ -17,7 +17,6 @@
 .center-column {
     display: flex;
     flex-flow: column nowrap;
-    gap: 1em;
     align-items: center;
 }
 

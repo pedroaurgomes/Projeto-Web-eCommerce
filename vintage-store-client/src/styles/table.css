@@ -9,14 +9,24 @@
   width: 100%;
 }
 
-.table .col-6 {
+.table .table-row {
   display: grid;
-  grid-template-columns: minmax(50px, 100px) repeat(6, 1fr);
   gap: 15px;
   padding: 0 0.5em;
   align-items: center;
   border-bottom: solid 1px var(--dark-gray);
   margin-bottom: 1em;
+}
+
+/* Used by the users view */
+.table-row.col-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Used by the cart view - there are 7 columns, but the first one is sized
+   different to accomodate the small image on the table row. */
+.table-row.col-7 {
+  grid-template-columns: minmax(50px, 100px) repeat(6, 1fr);
 }
 
 .table .span-cols-2 {
@@ -38,7 +48,14 @@
 }
 
 .table i {
-  color: var(--red);
   font-weight: bolder;
   cursor: pointer;
+}
+
+.table i.red {
+  color: var(--red);
+}
+
+.table i.black {
+  color: var(--black);
 }

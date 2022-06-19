@@ -91,7 +91,7 @@ export default {
       // TODO: Data validation.
       trueWhileAction(
         b => this.isLoading = b,
-        this.$store.dispatch("updateUser", {
+        this.$store.dispatch("updateCurrentUser", {
           name: this.name,
           email: this.email,
           address: this.address,

@@ -1,5 +1,5 @@
-import products from "./products";
-import users from "./registered_users";
+import * as HARDCODED_PRODUCTS from "./products";
+import * as HARDCODED_USERS from "./registered_users";
 
 const USER_PROPERTIES = {
   "id": String,
@@ -23,22 +23,84 @@ export function delay(ms) {
 // obligated to use promises, this making it compatible with the code that
 // will be written in the future to interact with the server.
 export async function fetchDelay() {
-    await delay(500);
+  await delay(500);
 }
 
 export function init() {
-  internalSetProducts(products);
-  internalSetUsers(users);
+  internalSetProducts(HARDCODED_PRODUCTS);
+  internalSetUsers(HARDCODED_USERS);
 }
 
+// TODO: convert to the same ok, error?, products? API
 export async function fetchProducts() {
-    await fetchDelay();
-    return internalGetProducts();
+  await fetchDelay();
+  return internalGetProducts();
 }
 
+// TODO: convert to the same ok, error?, product? API
 export async function fetchProduct(id) {
-    await fetchDelay();
-    return internalGetProducts()[id];
+  await fetchDelay();
+  return internalGetProducts()[id];
+}
+
+export async function deleteProduct(id) {
+  await fetchDelay();
+  const products = internalGetProducts();
+  const idx = products.findIndex(p => p.id === id);
+  if (idx < 0) return { ok: false, error: "product not found" };
+  products.splice(idx, 1);
+  internalSetProducts(products);
+  return { ok: true };
+}
+
+export async function createProduct(product) {
+  await fetchDelay();
+  if (product.id) return { ok: false, error: "product object cannot have 'id' property on creation" };
+  // TODO: verify that the object is valid
+  const products = internalGetProducts();
+  let candidateId = products.length;
+  while (products.findIndex(p => p.id === candidateId) >= 0) candidateId++;
+  product.id = candidateId;
+  products.push(product);
+  internalSetProducts(products);
+  return { ok: true, product };
+}
+
+export async function updateProduct(product) {
+  await fetchDelay();
+  const products = internalGetProducts();
+  const idx = products.findIndex(p => p.id === product.id);
+  if (idx < 0) return { ok: false, error: "product could not be found" };
+  products[idx] = product;
+  internalSetProducts(products);
+  return { ok: true, product };
+}
+
+export async function fetchUsers() {
+  await fetchDelay();
+  return { ok: true, users: internalGetUsers() };
+}
+
+export async function fetchUser(uid) {
+  await fetchDelay();
+  const users = internalGetUsers();
+  const idx = users.findIndex(u => u.id === uid);
+  if (idx < 0) return { ok: false, error: "user not found" };
+  return { ok: true, user: users[idx] };
+}
+
+export async function updateUser(update) {
+  await fetchDelay();
+  if (!["valid", "partial"].includes(isValidUser(update)))
+    return { ok: false, error: "invalid user object format" };
+
+  const users = internalGetUsers();
+  const idx = users.findIndex(u => u.id === update.id);
+  if (idx < 0) return { ok: false, error: "user not found" };
+  // Update only the fields that have changed, the res remain the same.
+  users[idx] = { ...users[idx], ...update };
+  internalSetUsers(users);
+  return { ok: true, user: users[idx] };
 }
 
 export async function login({ email, password }) {
@@ -65,17 +127,13 @@ export async function registerUser(user) {
   return { ok: true, user: user };
 }
 
-export async function updateUser(userUpdates) {
+export async function updateCurrentUser(userUpdates) {
   await fetchDelay();
   if (!["partial", "valid"].includes(isValidUser(userUpdates)))
     return { ok: false, error: "user updates is not in the correct format" };
   let currentUser = localStorage.getItem("currentUser");
   if (!currentUser) return { ok: false, error: "user not logged in" };
-  currentUser = JSON.parse(currentUser);
-  for (const key of Object.keys(USER_PROPERTIES)) {
-    if (!userUpdates[key]) continue;
-    currentUser[key] = userUpdates[key];
-  }
+  currentUser = { ...JSON.parse(currentUser), ...userUpdates };
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   return { ok: true, user: currentUser };
 }
@@ -89,11 +147,23 @@ function internalSetProducts(products) {
 }
 
 function internalGetUsers() {
-  return JSON.parse(localStorage.getItem("users"));
+  let users = localStorage.getItem("users");
+  if (!users) {
+    internalSetUsers(HARDCODED_USERS);
+    // Make sure it is a clone so that it can be modified at will
+    return JSON.parse(JSON.stringify(HARDCODED_USERS));
+  }
+  return JSON.parse(users);
 }
 
 function internalGetProducts() {
-  return JSON.parse(localStorage.getItem("products"));
+  let products = localStorage.getItem("products");
+  if (!products) {
+    internalSetProducts(HARDCODED_PRODUCTS);
+    // Make sure it is a clone so that it can be modified at will
+    return JSON.parse(JSON.stringify(HARDCODED_PRODUCTS));
+  }
+  return JSON.parse(products);
 }
 
 // Returns if an object is a valid user object
@@ -118,7 +188,8 @@ function isValidUser(userObj) {
   // An object with only some of the expected keys and other unexpected keys, is not
   // valid.
   if (keys.size > 0 && hasMissingKey) return "invalid";
-  if (hasMissingKey) return "partial";
+  // Event partial users can't be missing the "id" key.
+  if (hasMissingKey && "id" in userObj) return "partial";
   if (keys.size > 0) return "superset";
   return "valid";
 }

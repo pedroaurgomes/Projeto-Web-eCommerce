@@ -37,9 +37,12 @@ export default {
   computed: {
     style() {
       if (this.type === "filled") {
-        return {
+        let styleObj = {
           backgroundColor: `var(--${this.color})`
-        }
+        };
+        // If a light color is beeing used as a background, make the foreground color black.
+        if (/^light/.exec(this.color)) styleObj.color = `var(--black)`;
+        return styleObj;
       } else {
         return {
           borderColor: `var(--${this.color})`,

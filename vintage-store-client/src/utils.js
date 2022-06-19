@@ -1,5 +1,4 @@
 
-// TODO: Remove code duplication around this function
 export function formatPrice(price) {
   return price.toLocaleString("pt-BR", {
     style: "currency",

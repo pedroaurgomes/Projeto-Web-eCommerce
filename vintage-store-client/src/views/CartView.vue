@@ -1,9 +1,9 @@
 <template>
   <main class="main-column">
     <h1>Carrinho</h1>
-    <div class="center">
+    <div class="center flex-col">
       <div class="table">
-        <div class="col-6 table-head">
+        <div class="table-row col-7 table-head">
           <div>Imagem</div>
           <div class="span-cols-2">Título</div>
           <div>Cor</div>
@@ -11,7 +11,7 @@
           <div>Preço</div>
         </div>
         <ul v-if="cartItems.length > 0">
-          <li v-for="(item, i) in cartItems" class="col-6" :key="i">
+          <li v-for="(item, i) in cartItems" class="table-row col-7" :key="i">
             <template v-if="item.product">
               <div>
                 <img v-if="item.product.imgSrc" :src="item.product.imgSrc" />
@@ -25,7 +25,7 @@
               <div>{{ item.quantity }}</div>
               <div>{{ formatPrice(item.quantity * item.product.price) }}</div>
               <div class="icons">
-                <i @click="removeProduct(item.productId)" class="fa-solid fa-x"></i>
+                <i @click="removeProduct(item.productId)" class="fa-solid fa-x red"></i>
               </div>
             </template>
             <div v-else class="col-5">
@@ -151,7 +151,7 @@ export default {
 
       alert("Compra concluida com sucesso!");
       this.$store.commit("clearCart");
-      this.$router.replace({ name: "home" });
+      this.$router.push({ name: "home" });
     }
   },
 };
