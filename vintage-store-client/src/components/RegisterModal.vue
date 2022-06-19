@@ -6,43 +6,52 @@
       <TextField
         label="name"
         v-model="name"
+        name="Nome"
         placeholder="Nome"
       />
       <TextField
         label="id"
         v-model="id"
+        name="CPF"
         placeholder="CPF"
       />
       <TextField
         label="email"
         v-model="email"
+        name="Email"
         placeholder="Email"
       />
       <TextField
         label="phone"
         v-model="phone"
+        name="Telefone"
         placeholder="Telefone"
       />
       <TextField
         label="address"
         v-model="address"
+        name="Endereço"
         placeholder="Endereço"
       />
       <div class="flex-row flex-space-between">
         <TextField
           label="city"
           v-model="city"
+          name="Cidade"
           placeholder="Cidade"
         />
         <TextField
           label="extra"
           v-model="extra"
+          name="Complemento"
           placeholder="Complemento"
         />
       </div>
       <TextField
+        type="password"
         label="password"
         v-model="password"
+        name="Senha"
         placeholder="Senha"
       />
     </div>
@@ -75,9 +84,18 @@ export default {
   methods: {
     async submit() {
       // TODO: data validation
-      this.isLoading = true;
-      await this.sendRegistration();
-      this.isLoading = false;
+      if((/^[a-zA-Z\s]*$/.test(this.name))
+      && (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email))
+      && (/^[a-zA-Z\s0-9.,]*$/.test(this.address))
+      && (/^[a-zA-Z\s]*$/.test(this.city))
+      && (/^[a-zA-Z\s]*$/.test(this.extra))
+      && (/^[0-9]*$/.test(this.phone))){
+        this.isLoading = true;
+        await this.sendRegistration();
+        this.isLoading = false;
+      }else{
+        alert("Dados Inconsistentes!");
+      }
     },
     async sendRegistration() {
       const res = await this.$store.dispatch("registerUser", {

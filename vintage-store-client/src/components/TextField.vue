@@ -12,7 +12,7 @@
     >
       <legend>{{ name }}</legend>
       <input
-        type="text"
+        :type="type"
         :placeholder="nameOrPlaceholder"
         :label="label"
         :value="modelValue"
@@ -67,7 +67,12 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
+    type: {
+      type: String,
+      required: false,
+      default: "text",
+    },
   },
   data: () => ({
     hasFocus: false,
@@ -90,7 +95,7 @@ export default {
       } else {
         return {};
       }
-    }
+    },
   },
   methods: {
     emitInputEvent(event) {
