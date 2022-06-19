@@ -57,9 +57,9 @@
         <router-link to="/account">Minha Conta</router-link>
       </template>
       <template v-else-if="role === Role.Admin">
+        <router-link to="/products">Produtos</router-link>
         <router-link to="/users">Usuários</router-link>
         <router-link to="/account">Minha Conta</router-link>
-        <router-link to="/orders-admin">Pedidos</router-link>
       </template>
       <template v-else>
         <router-link to="/">Home</router-link>
