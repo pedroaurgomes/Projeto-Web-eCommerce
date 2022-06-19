@@ -89,17 +89,26 @@ export default {
   methods: {
     update() {
       // TODO: Data validation.
-      trueWhileAction(
-        b => this.isLoading = b,
-        this.$store.dispatch("updateCurrentUser", {
-          name: this.name,
-          email: this.email,
-          address: this.address,
-          city: this.city,
-          extra: this.extra,
-          phone: this.phone
-        })
-      )
+      if((/^[a-zA-Z\s]*$/.test(this.name))
+      && (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email))
+      && (/^[a-zA-Z\s0-9.,]*$/.test(this.address))
+      && (/^[a-zA-Z\s]*$/.test(this.city))
+      && (/^[a-zA-Z\s]*$/.test(this.extra))
+      && (/^[0-9]*$/.test(this.phone))){
+        trueWhileAction(
+          b => this.isLoading = b,
+          this.$store.dispatch("updateCurrentUser", {
+            name: this.name,
+            email: this.email,
+            address: this.address,
+            city: this.city,
+            extra: this.extra,
+            phone: this.phone
+          })
+        )
+      }else{
+        alert("Dados Inconsistentes!");
+      }
     },
     async logout() {
       await trueWhileAction(

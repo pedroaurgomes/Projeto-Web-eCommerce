@@ -99,35 +99,44 @@ export default {
   methods: {
     async save() {
       // TODO: data validation
+      if((/^[a-zA-Z\s.,!:;?/]*$/.test(this.title))
+      && (/^[a-zA-Z\s.,!:;?/]*$/.test(this.brand))
+      && (/^[0-9.]*$/.test(this.price))
+      && (/^[a-zA-Z\s.,!:;?/]*$/.test(this.description))
+      && (/^[a-zA-Z\s.,!:;?/]*$/.test(this.longDescription))
+      && (/^[0-9]*$/.test(this.nSold))
+      && (/^[0-9]*$/.test(this.nInStock))){
 
-      const productObj = {
-        title: this.title,
-        brand: this.brand,
-        price: parseInt(this.price),
-        description: this.description,
-        colors: this.colors,
-        defaultColor: this.defaultColor,
-        imgSrc: this.imgSrc,
-        longDescription: this.longDescription,
-        nSold: (this.nSold && parseInt(this.nSold)) || 0,
-        nInStock: parseInt(this.nInStock),
-      };
+        const productObj = {
+          title: this.title,
+          brand: this.brand,
+          price: parseInt(this.price),
+          description: this.description,
+          colors: this.colors,
+          defaultColor: this.defaultColor,
+          imgSrc: this.imgSrc,
+          longDescription: this.longDescription,
+          nSold: (this.nSold && parseInt(this.nSold)) || 0,
+          nInStock: parseInt(this.nInStock),
+        };
 
-      this.isLoading = true;
-      // If we are editing an existing object
-      let res;
-      if (this.$route.params.id) {
-        productObj.id = parseInt(this.$route.params.id);
-        res = await this.$store.dispatch("updateProduct", productObj);
-      } else {
-        res = await this.$store.dispatch("createProduct", productObj);
+        this.isLoading = true;
+        // If we are editing an existing object
+        let res;
+        if (this.$route.params.id) {
+          productObj.id = parseInt(this.$route.params.id);
+          res = await this.$store.dispatch("updateProduct", productObj);
+        } else {
+          res = await this.$store.dispatch("createProduct", productObj);
+        }
+        if (res instanceof Error) {
+          console.error(res);
+          alert("Um erro inexperado ocorreu, tente novamente");
+        }
+        this.isLoading = false;
+        this.$router.back();
+
       }
-      if (res instanceof Error) {
-        console.error(res);
-        alert("Um erro inexperado ocorreu, tente novamente");
-      }
-      this.isLoading = false;
-      this.$router.back();
     },
     uploadFile(e) {
       if (!e.target?.files || e.target.files.length <= 0 || !e.target.files[0]) return;

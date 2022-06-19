@@ -11,6 +11,7 @@
         v-model="email"
       ></TextField>
       <TextField
+        type="password"
         label="senha"
         name="Senha"
         placeholder="Senha..."

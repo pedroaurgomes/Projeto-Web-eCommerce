@@ -45,7 +45,13 @@
                 placeholder="CEP"
                 v-model="zipCode"
               />
-              <Button type="outlined" size="sm" color="dark-gray" class="flex-center">Calcular</Button>
+              <Button
+                type="outlined"
+                size="sm"
+                color="dark-gray"
+                class="flex-center"
+                @click="calculateCEP"
+                >Calcular</Button>
             </fieldset>
             <fieldset class="flex-col gap-sm">
               <legend>Método de pagamento</legend>
@@ -148,6 +154,9 @@ export default {
     formatPrice,
     removeProduct(id) {
       this.$store.commit("removeFromCart", id);
+    },
+    calculateCEP(){
+      this.shippingCost = 50.0;
     },
     submit() {
       // TODO: form validation
