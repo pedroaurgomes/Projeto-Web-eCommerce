@@ -76,8 +76,9 @@ export default {
       const filters = this.filterItems.map(i => i.toLowerCase());
       return this.products
         .filter(p =>
-          filters.includes(p.brand.toLowerCase())
-          || (p.category && filters.includes(p.category))
+          filters.some(f => p.title.toLocaleLowerCase().indexOf(f) !== -1)
+          || filters.includes(p.brand.toLocaleLowerCase())
+          || (p.category && filters.includes(p.category.toLocaleLowerCase()))
         );
     },
     ...mapGetters([
