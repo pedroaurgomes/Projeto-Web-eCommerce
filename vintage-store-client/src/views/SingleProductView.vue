@@ -1,19 +1,19 @@
 <template>
   <Loading v-if="isLoading"/>
   <main v-else class="main-column">
-    <div class="flex-row gap-lg product-description">
+    <div class="flex-row flex-wrap gap-md product-description">
       <img v-if="imgSrc" :src="imgSrc" class="product-image" />
       <img v-else src="/assets/product_img_placeholder.png" class="product-image" />
-      <div class="flex-col">
-        <h3>{{ title }}</h3>
-        <h4>{{ brand }}</h4>
-        <p>{{ description }}</p>
+      <div class="flex-col gap-sm product-data">
+        <h3 class="no-margin">{{ title }}</h3>
+        <h4 class="no-margin">{{ brand }}</h4>
+        <p class="small-margin">{{ description }}</p>
         <select v-model="selectedColor">
           <option v-for="(color, i) in colors" :key="i" :value="i">{{ color }}</option>
         </select>
         <Counter v-model="quantity"></Counter>
-        <p>Total: {{ formatPrice(price * quantity) }}</p>
-        <p>Unitário: {{ formatPrice(price) }} ({{ quantity }}x)</p>
+        <p class="no-margin">Total: {{ formatPrice(price * quantity) }}</p>
+        <p class="no-margin">Unitário: {{ formatPrice(price) }} ({{ quantity }}x)</p>
         <Button @click="addToCart">Comprar</Button>
       </div>
     </div>
@@ -21,6 +21,7 @@
       <h2>Detalhes do produto</h2>
       <p>{{longDescription}}</p>
     </div>
+    <br>
   </main>
 </template>
 
@@ -94,5 +95,10 @@ export default {
 
 .product-description {
   justify-content: center;
+}
+
+.product-data {
+  flex: 1 1 auto;
+  max-width: 500px;
 }
 </style>
