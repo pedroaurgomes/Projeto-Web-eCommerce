@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import { Error } from "./errors";
 import { Role } from "@/roles";
 import store from "@/store";
-import { makeGetter } from "@/utils";
 
 import HomeView from "@/views/HomeView.vue";
 
