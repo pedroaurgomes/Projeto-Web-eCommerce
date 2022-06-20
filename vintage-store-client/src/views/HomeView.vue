@@ -25,11 +25,11 @@
           @submit="pushFilter()"
           v-model="search"
         ></TextField>
-        <FilterList ref="filter"></FilterList>
+        <FilterList v-model="filterItems"></FilterList>
       </div>
       <div class="product-list">
         <ProductCard
-          v-for="(product, i) in products"
+          v-for="(product, i) in filteredProducts"
           :key="i"
           :title="product.title"
           :brand="product.brand"
@@ -61,6 +61,7 @@ export default {
   },
   data: () => ({
     search: "",
+    filterItems: [],
     isLoading: true,
   }),
   created() {
@@ -70,6 +71,15 @@ export default {
     })();
   },
   computed: {
+    filteredProducts() {
+      if (this.filterItems.length === 0) return this.products;
+      const filters = this.filterItems.map(i => i.toLowerCase());
+      return this.products
+        .filter(p =>
+          filters.includes(p.brand.toLowerCase())
+          || (p.category && filters.includes(p.category))
+        );
+    },
     ...mapGetters([
       "products"
     ])
@@ -77,7 +87,7 @@ export default {
   methods: {
     pushFilter() {
       if (this.search.length > 0) {
-        this.$refs.filter.pushItem(this.search);
+        this.filterItems.push(this.search);
         this.search = "";
       }
     },

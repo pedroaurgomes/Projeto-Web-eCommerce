@@ -2,7 +2,7 @@
   <div class="filter-container">
     <p>Filtros:</p>
     <ul class="filter-list">
-      <li v-for="(item, i) in items" :key="i">
+      <li v-for="(item, i) in modelValue" :key="i">
         <Chip :text="item" :deletable="true" @delete="removeItem(i)"></Chip>
       </li>
     </ul>
@@ -15,16 +15,17 @@ export default {
   components: {
     Chip,
   },
-  props: {},
-  data: () => ({
-    items: ["Calça", "Addidas", "Nike"],
-  }),
+  props: {
+    modelValue: {
+      type: Array,
+      required: true,
+    }
+  },
   methods: {
     removeItem(i) {
-      this.items.splice(i, 1);
-    },
-    pushItem(name) {
-      this.items.push(name);
+      // Create a copy of the array but without the ith index.
+      const newValue = this.modelValue.filter((_, idx) => i !== idx);
+      this.$emit("update:modelValue", newValue);
     },
   },
 };
