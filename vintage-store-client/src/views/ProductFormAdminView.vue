@@ -30,8 +30,14 @@
       placeholder="Descrição longa..."
       v-model="longDescription"
       :width="36"
-     
     ></TextArea>
+    <TextField
+      label="colors"
+      name="Cores"
+      placeholder="Cores separadas por vírgula..."
+      v-model="colors"
+      :width="36"
+    ></TextField>
     <TextField
       label="price"
       name="Preço"
@@ -127,7 +133,7 @@ export default {
         brand: this.brand,
         price: parseInt(this.price),
         description: this.description,
-        colors: this.colors,
+        colors: this.colors.split(","),
         defaultColor: this.defaultColor,
         imgSrc: this.imgSrc,
         longDescription: this.longDescription,
