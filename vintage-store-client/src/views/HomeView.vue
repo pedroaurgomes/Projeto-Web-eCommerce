@@ -1,45 +1,31 @@
 <template>
-  <Loading v-if="isLoading" />
-  <template v-else>
-    <!-- <section id="home-image"> -->
-    <CarouselManager></CarouselManager>
-      <!-- <fieldset>
-        <input
-          type="radio"
-          id="home-image-01"
-          name="home-image-carousels"
-          checked
-        />
-        <input type="radio" id="home-image-02" name="home-image-carousels" />
-        <input type="radio" id="home-image-03" name="home-image-carousels" />
-      </fieldset> -->
-    <!-- </section> -->
-    <main class="main-column">
-      <div>
-        <TextField
-          :expandTransition="true"
-          name="Busca"
-          label="busca"
-          placeholder="Buscar..."
-          iconClass="fa-solid fa-magnifying-glass"
-          @submit="pushFilter()"
-          v-model="search"
-        ></TextField>
-        <FilterList v-model="filterItems"></FilterList>
-      </div>
-      <div class="product-list">
-        <ProductCard
-          v-for="(product, i) in filteredProducts"
-          :key="i"
-          :title="product.title"
-          :brand="product.brand"
-          :price="product.price"
-          :imgSrc="product.imgSrc"
-          @click="gotoProduct(product.id)"
-        ></ProductCard>
-      </div>
-    </main>
-  </template>
+  <CarouselManager></CarouselManager>
+  <main class="main-column">
+    <LoadingModal v-if="isLoading" />
+    <div>
+      <TextField
+        :expandTransition="true"
+        name="Busca"
+        label="busca"
+        placeholder="Buscar..."
+        iconClass="fa-solid fa-magnifying-glass"
+        @submit="pushFilter()"
+        v-model="search"
+      ></TextField>
+      <FilterList v-model="filterItems"></FilterList>
+    </div>
+    <div class="product-list">
+      <ProductCard
+        v-for="(product, i) in filteredProducts"
+        :key="i"
+        :title="product.title"
+        :brand="product.brand"
+        :price="product.price"
+        :imgSrc="product.imgSrc"
+        @click="gotoProduct(product.id)"
+      ></ProductCard>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -48,7 +34,7 @@ import { mapGetters } from "vuex";
 import ProductCard from "@/components/ProductCard.vue";
 import TextField from "@/components/TextField.vue";
 import FilterList from "@/components/FilterList.vue";
-import Loading from "@/components/Loading.vue";
+import LoadingModal from "@/components/LoadingModal.vue";
 import CarouselManager from "@/components/CarouselManager.vue"
 
 export default {
@@ -56,7 +42,7 @@ export default {
     ProductCard,
     TextField,
     FilterList,
-    Loading,
+    LoadingModal,
     CarouselManager,
   },
   data: () => ({
