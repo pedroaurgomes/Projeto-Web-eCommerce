@@ -109,7 +109,7 @@ export default {
 
 .button.btn-lg {
   padding: 0.625em 1.25em;
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 
 /* TODO: define "btn-xl" */
