@@ -16,6 +16,7 @@
         name="Senha"
         placeholder="Senha..."
         v-model="password"
+        @submit="login"
       ></TextField>
       <br>
       <Button @click="login">Login</Button>
