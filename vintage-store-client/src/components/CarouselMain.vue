@@ -44,9 +44,9 @@ export default {
     },
   },
   components: { 
-                CarouselItem, 
-                //CarouselControls, 
-                CarouselIndicators },
+    CarouselItem, 
+    CarouselIndicators
+  },
   data: () => ({
     currentSlide: 0,
     slideInterval: null,
@@ -108,6 +108,8 @@ export default {
 .carousel {
   display: flex;
   justify-content: center;
+  background-color: var(--dark-red);
+  padding: 1em;
 }
 .carousel-inner {
   position: relative;

@@ -27,6 +27,7 @@ export default {
 img {
   height: 60vh;
   width: 100%;
+  object-fit: contain;
 }
 
 .carousel-item {
