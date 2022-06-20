@@ -1,17 +1,36 @@
 
 <template> 
   <div class="counter">
-    <button @click = "increment" style="font-weight: bold"> + </button>
-    <input type="number" min="1" v-model="count" :style="{'width': `${textSize}em`}">
-    <button @click = "decrement" style="font-weight: bold"> - </button>
+    <button
+      @click="$emit('update:modelValue', modelValue + 1)"
+      style="font-weight: bold"
+    > + </button>
+    <input
+      type="number"
+      min="1"
+      :value="modelValue"
+      @input="e => $emit('update:modelValue', e.target.value)"
+      :style="{'width': `${textSize}em`}"
+    >
+    <button
+      @click="$emit('update:modelValue', Math.max(modelValue - 1, 1))"
+      style="font-weight: bold"
+    > - </button>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      count: 1, 
+  props:  {
+    modelValue: {
+      type: Number,
+      required: true,
+    },
+    // Prop para editar o tamanho do texto (componente deve escalar de acordo)
+    textSize: {
+      type: Number,
+      required: false,
+      default: 3,
     }
   },
   methods: { 
@@ -25,14 +44,6 @@ export default {
       }
       // emit the event: "Input"
     },
-  },
-  props:  {
-    // Prop para editar o tamanho do texto (componente deve escalar de acordo)
-    textSize: {
-      type: Number,
-      required: false,
-      default: 3,
-    }
   }
 };
 </script>
