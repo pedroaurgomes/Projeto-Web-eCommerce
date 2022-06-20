@@ -1,14 +1,8 @@
 <template>
-  <div class="material-input-container">
+  <div class="material-textarea-container">
     <fieldset
-      class="material-input big-input"
-      :class="{
-        'input-expand-transition': expandTransition,
-        'content': this.modelValue.length > 0,
-        'named': !this.unnamed,
-        'unnamed': this.unnamed,
-      }"
-      :style="textareaStyle"
+      class="material-textarea"
+      :class="{ 'content': this.modelValue.length > 0 }"
     >
       <legend>{{ name }}</legend>
       <textarea
@@ -17,14 +11,13 @@
         :placeholder="nameOrPlaceholder"
         :label="label"
         :value="modelValue"
-        :style="inputStyle"
+        :style="textareaStyle"
         @input="emitInputEvent"
         @keydown.enter="emitSubmitEvent"
         @focus="hasFocus = true"
         @blur="hasFocus = false"
         :disabled="this.unnamed"
       ></textarea>
-      <i v-if="iconClass" :class="iconClass" @click="emitSubmitEvent"></i>
     </fieldset>
   </div>
 </template>
@@ -54,21 +47,11 @@ export default {
       required: false,
       default: null,
     },
-    expandTransition: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     width: {
       type: Number,
       required: false,
       default: 15,
     },
-    unnamed: {
-      type: Boolean,
-      required: false,
-      default: false,
-    }
   },
   data: () => ({
     hasFocus: false,
@@ -77,21 +60,9 @@ export default {
     nameOrPlaceholder() {
       return this.hasFocus ? this.placeholder : this.name;
     },
-    inputStyle() {
+    textareaStyle() {
       return { width: `${this.width}em` };
     },
-    textareaStyle() {
-      if (this.unnamed) {
-        return {
-          backgroundColor: "var(--light-gray)",
-          color: "var(--black)",
-          border: "none",
-          fontWeight: "bold",
-        }
-      } else {
-        return {};
-      }
-    }
   },
   methods: {
     emitInputEvent(event) {
@@ -104,10 +75,16 @@ export default {
 };
 </script>
 <style>
-.text-area {
-  border: none;
+.material-textarea > textarea {
   padding: 5px;
   height: 12em;
+  background-color: transparent;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  font-family: inherit;
 }
 
 .big-input {
@@ -115,12 +92,13 @@ export default {
 
 }
 
-.material-input-container {
+.material-textarea-container {
   display: flex;
   flex-direction: row;
   padding-top: .1em;
 }
-.material-input {
+
+.material-textarea {
   --legend-font-size: .8rem;
   --padding-top-bottom: 0em;
   justify-self: flex-end;
@@ -136,49 +114,33 @@ export default {
   padding-bottom: calc(var(--padding-top-bottom) + var(--legend-font-size) / 2);
   padding-left: 0.6em;
   padding-right: 0.6em;
-  border-radius: 50px;
+  border-radius: 20px;
   box-sizing: border-box;
 }
-.material-input:focus-within {
+
+.material-textarea:focus-within {
   border: 2px solid var(--black);
 }
-.material-input:focus-within.named, .material-input.named.content {
+
+.material-textarea:focus-within, .material-textarea.content {
   padding-top: var(--padding-top-bottom);
   margin-top: 0;
 }
-.material-input > input {
-  background-color: transparent;
-  color: inherit;
-  font-weight: inherit;
-  font-size: inherit;
+
+.material-textarea > textarea:focus, .material-textarea:focus-within > textarea {
   border: none;
   outline: none;
 }
-.material-input.input-expand-transition input {
-  transition: width var(--transition-speed) 100ms ease;
-}
-.material-input input:focus {
-  outline: none;
-}
-.material-input:focus-within input {
-  border: none;
-  outline: none;
-}
-.material-input.input-expand-transition:focus-within input {
-  width: 25em;
-}
-.material-input i {
-  color: var(--dark-gray);
-  transition: color var(--transition-speed) ease;
-  cursor: pointer;
-}
-.material-input:focus-within > i {
+
+.material-textarea:focus-within > i {
   color: var(--black);
 }
-.material-input > legend {
+
+.material-textarea > legend {
   display: none;
 }
-.material-input.named:focus-within > legend, .material-input.named.content > legend {
+
+.material-textarea:focus-within > legend, .material-textarea.content > legend {
   display: block !important;
   font-size: var(--legend-font-size);
 }

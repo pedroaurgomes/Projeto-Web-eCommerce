@@ -98,7 +98,7 @@ export default {
       }
     },
     async sendRegistration() {
-      const res = await this.$store.dispatch("registerUser", {
+      const res = await this.$store.dispatch("currentUser/register", {
         name: this.name,
         id: this.id,
         email: this.email,

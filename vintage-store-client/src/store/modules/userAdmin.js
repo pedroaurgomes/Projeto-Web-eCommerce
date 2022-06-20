@@ -1,5 +1,3 @@
-import { createStore } from "vuex";
-
 import * as mock from "@/mock";
 
 const store = {

@@ -23,7 +23,7 @@
               </div>
               <div>{{ item.color }}</div>
               <!-- <div>{{ item.quantity }}</div> -->
-              <Counter :textSize="2" isMutable="true"></Counter>
+              <Counter :textSize="2" :isMutable="true"></Counter>
               <div>{{ formatPrice(item.quantity * item.product.price) }}</div>
               <div class="icons">
                 <i @click="removeProduct(item.productId)" class="fa-solid fa-x red"></i>
