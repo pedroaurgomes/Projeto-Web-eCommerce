@@ -54,15 +54,21 @@ export default {
   border-radius: 50px; 
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
-  padding: 3px 5px;
+  padding: .2em .3em;
   width: fit-content; 
 }
 
-.counter > button{
-  background-color: white;
+.counter > button {
+  background-color: transparent;
   border: none;
   font-size: 1em;
+}
+
+@media screen and (max-width: 500px) {
+  .cart-page .counter {
+    flex-direction: column;
+    padding: .2em 0;
+  }
 }
 
 .counter > button:hover {
