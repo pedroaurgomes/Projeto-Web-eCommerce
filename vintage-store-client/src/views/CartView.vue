@@ -1,12 +1,12 @@
 <template>
-  <main class="main-column">
+  <main class="main-column cart-page">
     <LoadingModal v-if="isLoading"></LoadingModal>
     <h1>Carrinho</h1>
     <div class="center flex-col">
       <div class="table">
         <div class="table-row col-7 table-head">
-          <div>Imagem</div>
-          <div class="span-cols-2">Título</div>
+          <div class="cart-image-col">Imagem</div>
+          <div class="cart-title-col">Título</div>
           <div>Cor</div>
           <div>Qtd.</div>
           <div>Preço</div>
@@ -14,17 +14,17 @@
         <ul v-if="cartItems.length > 0">
           <li v-for="(item, i) in cartItems" class="table-row col-7" :key="i">
             <template v-if="item.product">
-              <div>
+              <div class="cart-image-col">
                 <img v-if="item.product.imgSrc" :src="item.product.imgSrc" />
                 <img v-else src="/assets/product_img_placeholder.png" />
               </div>
-              <div class="span-cols-2">
+              <div class="cart-title-col">
                 <p class="small-margin bold">{{ item.product.title }}</p>
                 <p class="small-margin">{{ item.product.description }}</p>
               </div>
               <div>{{ item.color }}</div>
               <Counter
-                :textSize="2"
+                :textSize="1"
                 :modelValue="item.quantity"
                 @update:modelValue="quantity => $store.commit('updateCartItem', { idx: i, quantity })"
               ></Counter>
@@ -47,6 +47,7 @@
                 label="zip-code"
                 name="CEP"
                 placeholder="CEP"
+                :width="10"
                 v-model="zipCode"
               />
               <Button
@@ -73,18 +74,18 @@
               </div>
 
               <TextField
-                label="zip-code"
+                label="card-number"
                 name="Número do cartão"
                 placeholder="Número do cartão"
-                :width="32"
+                :width="20"
                 v-model="cardNumber"
               />
 
               <TextField
-                label="zip-code"
+                label="name-in-cart"
                 name="Nome no cartão"
                 placeholder="Nome no cartão"
-                :width="32"
+                :width="20"
                 v-model="nameInCard"
               />
 
@@ -174,6 +175,22 @@ export default {
         alert("CEP precisa seguir formato XXXXX-XXX");
         return false;
       }
+
+      if (!this.cardNumber) {
+        alert("Insira o número de cartão");
+        return false;
+      }
+
+      if (!this.nameInCard) {
+        alert("Insira um nome do cartão");
+        return false;
+      }
+
+      if (!this.ccv) {
+        alert("Insira um código de segurança");
+        return false;
+      }
+      
       return true;
     },
     async calculateShippingCost() {
@@ -207,5 +224,19 @@ export default {
 
 .price-info p {
   margin: 0;
+}
+
+.table .cart-title-col {
+  grid-column: span 2;
+}
+
+@media screen and (max-width: 500px) {
+  .table .cart-title-col {
+    grid-column: span 3;
+  }
+
+  .table .cart-image-col {
+    display: none;
+  }
 }
 </style>
