@@ -45,6 +45,9 @@ export default {
     password: "",
     showRegisterModal: false,
   }),
+  computed: {
+    fromRoute() { return this.$route.query.from; }
+  },
   methods: {
     async login() {
       const res = await this.$store.dispatch("login", { email: this.email, password: this.password });
@@ -55,9 +58,16 @@ export default {
         return;
       }
 
-      this.$router.replace({
-        name: this.$route.query.from || 'account'
-      });
+      // By default we redirect the user to the 'account' page. However, if the user got here
+      // through a redirect and set the 'from' query, then redirect it to that page. This
+      // may introduce a bug, where if the 'from' query parameter is the login page itself,
+      // the logged in user can't redirect to that because it no longer has access to the page.
+      // So in that case, just use the default 'account' redirect.
+      let name = 'account';
+      if (this.fromRoute && this.fromRoute != 'login')
+        name = this.fromRoute;
+
+      this.$router.replace({ name });
     }
   }
 };

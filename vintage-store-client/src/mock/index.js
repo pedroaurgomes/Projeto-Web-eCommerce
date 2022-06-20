@@ -138,6 +138,20 @@ export async function updateCurrentUser(userUpdates) {
   return { ok: true, user: currentUser };
 }
 
+export async function calculateShippingCost(zipCode) {
+  await fetchDelay();
+
+  // Very simple way of producing a cost that is kind of random and determined
+  // by the zip code.
+  let hash = 0;
+  for (let i = 0; i < zipCode.length; i++) {
+    hash += Math.pow(10, i) * zipCode.charCodeAt(i);
+    hash += zipCode.charCodeAt(i);
+    hash %= 100;
+  }
+  return hash;
+}
+
 function internalSetUsers(users) {
   localStorage.setItem("users", JSON.stringify(users));
 }

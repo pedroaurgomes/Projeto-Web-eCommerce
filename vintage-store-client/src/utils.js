@@ -10,3 +10,7 @@ export function trueWhileAction(fn, promise) {
   fn(true);
   return promise.finally(() => fn(false));
 }
+
+export const makeGetter = fn => ({
+  get value() { return fn() }
+})

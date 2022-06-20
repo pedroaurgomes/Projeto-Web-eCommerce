@@ -1,13 +1,14 @@
 <template>
-  <TopBar :role="$store.getters.userRole"></TopBar>
+  <TopBar :role="userRole"></TopBar>
   <RouterView />
   <Footer></Footer>
 </template>
 
 <script>
-import * as mock from "@/mock";
+import { mapGetters } from "vuex";
 
 import { Error as RouterError } from "@/router/errors";
+import * as mock from "@/mock";
 
 import TopBar from "@/components/TopBar.vue";
 import Footer from "@/components/Footer.vue";
@@ -26,7 +27,7 @@ export default {
     } else {
       // If there is a current user that was already logged in, login again
       // with the same data.
-      this.$store.commit("tryLoadCurrentUserFromLocalStorage");
+      this.$store.commit("currentUser/tryLoadFromLocalStorage");
       this.$store.commit("tryLoadCartFromLocalStorage");
     }
 
@@ -48,6 +49,9 @@ export default {
   },
   beforeUnmount() {
     if (this.unsubscribeMutation) this.unsubscribeMutation();
+  },
+  computed: {
+    ...mapGetters(["userRole"])
   }
 };
 </script>

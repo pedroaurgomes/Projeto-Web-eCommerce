@@ -107,6 +107,7 @@ header {
   align-items: center;
   background-color: var(--black);
   box-sizing: border-box;
+  z-index: 99;
 }
 
 header nav {
@@ -130,6 +131,10 @@ header nav a:hover {
   flex-flow: row nowrap;
   align-items: center;
   gap: 1em;
+}
+
+.router-link-active {
+  text-decoration: underline;
 }
 
 #logo {

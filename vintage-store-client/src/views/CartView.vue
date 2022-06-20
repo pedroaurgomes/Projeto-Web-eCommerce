@@ -1,5 +1,6 @@
 <template>
   <main class="main-column">
+    <LoadingModal v-if="isLoading"></LoadingModal>
     <h1>Carrinho</h1>
     <div class="center flex-col">
       <div class="table">
@@ -22,8 +23,11 @@
                 <p class="small-margin">{{ item.product.description }}</p>
               </div>
               <div>{{ item.color }}</div>
-              <!-- <div>{{ item.quantity }}</div> -->
-              <Counter :textSize="2" isMutable="true"></Counter>
+              <Counter
+                :textSize="2"
+                :modelValue="item.quantity"
+                @update:modelValue="quantity => $store.commit('updateCartItem', { idx: i, quantity })"
+              ></Counter>
               <div>{{ formatPrice(item.quantity * item.product.price) }}</div>
               <div class="icons">
                 <i @click="removeProduct(item.productId)" class="fa-solid fa-x red"></i>
@@ -35,7 +39,7 @@
           </li>
         </ul>
         <p v-else>Nenhum item no carrinho ainda...</p>
-        <div class="flex-row flex-space-between">
+        <div class="flex-row flex-space-between flex-wrap gap-md">
           <div class="flex-col gap-sm">
             <fieldset class="flex-row gap-sm">
               <legend>Informações para a entrega</legend>
@@ -50,7 +54,7 @@
                 size="sm"
                 color="dark-gray"
                 class="flex-center"
-                @click="calculateCEP"
+                @click="calculateShippingCost"
                 >Calcular</Button>
             </fieldset>
             <fieldset class="flex-col gap-sm">
@@ -112,16 +116,19 @@
 import { mapGetters } from "vuex";
 
 import { formatPrice } from "@/utils";
+import * as mock from "@/mock";
 
 import TextField from "@/components/TextField.vue";
 import Button from "@/components/Button.vue";
 import Counter from "@/components/Counter.vue";
+import LoadingModal from "@/components/LoadingModal.vue";
 
 export default {
   components: {
     TextField,
     Button,
     Counter,
+    LoadingModal,
   },
   data: () => ({
     zipCode: "",
@@ -130,6 +137,7 @@ export default {
     nameInCard: "",
     ccv: "",
     shippingCost: null,
+    isLoading: false,
   }),
   created() {
     for (const item of this.cartItems) {
@@ -155,12 +163,33 @@ export default {
     removeProduct(id) {
       this.$store.commit("removeFromCart", id);
     },
-    calculateCEP(){
-      this.shippingCost = 50.0;
-    },
-    submit() {
-      // TODO: form validation
+    validateZipCode() {
+      if (!this.zipCode) {
+        alert("Pro favor insira o CEP");
+        return false;
+      }
 
+      const isZipCodeValid = /^\d{5}-\d{3}$/.test(this.zipCode);
+      if (!isZipCodeValid) {
+        alert("CEP precisa seguir formato XXXXX-XXX");
+        return false;
+      }
+      return true;
+    },
+    async calculateShippingCost() {
+      if (!this.validateZipCode()) return;
+      this.isLoading = true;
+      this.shippingCost = await mock.calculateShippingCost(this.zipCode);
+      this.isLoading = false;
+    },
+    async submit() {
+      if (!this.validateZipCode()) return;
+      // TODO: more validation
+
+      // TODO: talk to the server
+      this.isLoading = true;
+      await mock.fetchDelay();
+      this.isLoading = false;
       alert("Compra concluida com sucesso!");
       this.$store.commit("clearCart");
       this.$router.push({ name: "home" });

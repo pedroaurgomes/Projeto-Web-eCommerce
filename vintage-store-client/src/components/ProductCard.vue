@@ -1,5 +1,5 @@
 <template>
-  <div class="product" @click="$emit('click')">
+  <div class="product-card" @click="$emit('click')">
     <div class="product-image">
       <img v-if="imgSrc" :src="imgSrc" />
       <img v-else src="/assets/product_img_placeholder.png" />
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     title: {
@@ -45,7 +46,7 @@ export default {
 </script>
 
 <style>
-.product {
+.product-card {
   display: flex;
   flex-flow: column nowrap;
   border-radius: 10px;
@@ -55,7 +56,7 @@ export default {
   border: 1px var(--very-light-gray) solid;
 }
 
-.product:hover {
+.product-card:hover {
   box-shadow: 5px 4px 6px var(--very-light-gray);
   cursor: pointer;
 }

@@ -3,11 +3,14 @@ import { createRouter, createWebHistory } from "vue-router";
 import { Error } from "./errors";
 import { Role } from "@/roles";
 import store from "@/store";
+import { makeGetter } from "@/utils";
 
 import HomeView from "@/views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  // always scroll to top
+  scrollBehavior: () => ({ top: 0 }),
   routes: [
     {
       path: "/",
