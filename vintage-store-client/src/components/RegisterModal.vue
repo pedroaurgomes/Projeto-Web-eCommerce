@@ -8,30 +8,36 @@
         v-model="name"
         name="Nome"
         placeholder="Nome"
+        :width="inputWidth"
       />
       <TextField
         label="id"
         v-model="id"
         name="CPF"
         placeholder="CPF"
+        :width="inputWidth"
       />
       <TextField
         label="email"
         v-model="email"
         name="Email"
         placeholder="Email"
+        :width="inputWidth"
       />
       <TextField
         label="phone"
         v-model="phone"
         name="Telefone"
+        type="tel"
         placeholder="Telefone"
+        :width="inputWidth"
       />
       <TextField
         label="address"
         v-model="address"
         name="Endereço"
         placeholder="Endereço"
+        :width="inputWidth"
       />
       <div class="flex-row flex-space-between">
         <TextField
@@ -39,12 +45,14 @@
           v-model="city"
           name="Cidade"
           placeholder="Cidade"
+          :width="inputWidth / 2"
         />
         <TextField
           label="extra"
           v-model="extra"
           name="Complemento"
           placeholder="Complemento"
+          :width="inputWidth / 2 - 2"
         />
       </div>
       <TextField
@@ -53,6 +61,7 @@
         v-model="password"
         name="Senha"
         placeholder="Senha"
+        :width="inputWidth"
       />
     </div>
     <br>
@@ -80,10 +89,10 @@ export default {
     extra: "",
     password: "",
     isLoading: false,
+    inputWidth: 25,
   }),
   methods: {
     async submit() {
-      // TODO: data validation
       if((/^[a-zA-Z\s]*$/.test(this.name))
       && (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email))
       && (/^[a-zA-Z\s0-9.,]*$/.test(this.address))
