@@ -21,6 +21,6 @@ window.refreshLocalStorage = async () => {
   localStorage.setItem("users", JSON.stringify(users.default));
 
   if (store.getters.userRole & (Role.Admin | Role.Customer)) {
-    localStorage.setItem("currentUser", JSON.stringify(store.getters.user));
+    localStorage.setItem("currentUser", JSON.stringify(store.getters["currentUser/get"]));
   }
 }
