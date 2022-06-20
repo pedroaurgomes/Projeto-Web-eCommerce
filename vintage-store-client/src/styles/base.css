@@ -53,3 +53,9 @@ p.small-margin {
 fieldset {
     border-radius: 10px;
 }
+
+@media screen and (max-width: 500px) {
+  body {
+    font-size: .7rem;
+  }
+}

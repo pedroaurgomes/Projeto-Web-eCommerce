@@ -12,7 +12,7 @@
 .table .table-row {
   display: grid;
   gap: 15px;
-  padding: 0 0.5em;
+  padding: 0.1em 0.5em;
   align-items: center;
   border-bottom: solid 1px var(--dark-gray);
   margin-bottom: 1em;
@@ -27,6 +27,16 @@
    different to accomodate the small image on the table row. */
 .table-row.col-7 {
   grid-template-columns: minmax(50px, 100px) repeat(6, 1fr);
+}
+
+@media screen and (max-width: 500px) {
+  .table .table-row {
+    padding-bottom: .5em;
+  }
+
+  .table-row.col-7 {
+    grid-template-columns: minmax(25px, 50px) repeat(6, 1fr);
+  }
 }
 
 .table .span-cols-2 {
