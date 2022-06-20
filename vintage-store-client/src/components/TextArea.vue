@@ -16,7 +16,6 @@
         @keydown.enter="emitSubmitEvent"
         @focus="hasFocus = true"
         @blur="hasFocus = false"
-        :disabled="this.unnamed"
       ></textarea>
     </fieldset>
   </div>
