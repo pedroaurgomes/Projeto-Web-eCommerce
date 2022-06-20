@@ -2,53 +2,54 @@
   <main class="main-column">
     <h2>Minha Conta</h2>
     <LoadingModal v-if="isLoading"></LoadingModal>
-    <div class="grid-2-cols">
-      <div class="flex-col gap-sm">
+    <div class="flex-col gap-sm">
+      <TextField
+        label="name"
+        name="Nome"
+        v-model="name"
+        :width="inputWidth"
+        placeholder="..."
+      />
+      <TextField
+        label="email"
+        name="Email"
+        v-model="email"
+        :width="inputWidth"
+        placeholder="..."
+      />
+      <TextField
+        label="address"
+        name="Endereço"
+        v-model="address"
+        :width="inputWidth"
+        placeholder="..."
+      />
+      <div class="flex-row">
         <TextField
-          label="name"
-          name="Nome"
-          v-model="name"
+          label="city"
+          name="Cidade"
+          v-model="city"
+          :width="inputWidth / 2"
           placeholder="..."
         />
         <TextField
-          label="email"
-          name="Email"
-          v-model="email"
+          label="extra"
+          name="Complemento"
+          v-model="extra"
+          :width="inputWidth / 2 - 2"
           placeholder="..."
         />
-        <TextField
-          label="address"
-          name="Endereço"
-          v-model="address"
-          placeholder="..."
-        />
-        <div class="flex-row flex-space-between">
-          <TextField
-            label="city"
-            name="Cidade"
-            v-model="city"
-            placeholder="..."
-          />
-          <TextField
-            label="extra"
-            name="Complemento"
-            v-model="extra"
-            placeholder="..."
-          />
-        </div>
-        <TextField
-          label="phone"
-          name="Telefone"
-          v-model="phone"
-          placeholder="..."
-        />
-        <div class="flex-row flex-space-between">
-          <Button color="blue" @click="update">Salvar</Button>
-          <Button color="red" @click="logout">Sair</Button>
-        </div>
       </div>
-      <div>
-        /* Imagem do sene */
+      <TextField
+        label="phone"
+        name="Telefone"
+        v-model="phone"
+        :width="inputWidth"
+        placeholder="..."
+      />
+      <div class="flex-row gap-sm">
+        <Button color="blue" @click="update">Salvar</Button>
+        <Button color="red" @click="logout">Sair</Button>
       </div>
     </div>
   </main>
@@ -74,6 +75,7 @@ export default {
     extra: "",
     phone: "",
     isLoading: false,
+    inputWidth: 25,
   }),
   created() {
     const user = this.$store.getters["currentUser/get"];
