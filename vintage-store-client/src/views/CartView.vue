@@ -123,6 +123,7 @@ import TextField from "@/components/TextField.vue";
 import Button from "@/components/Button.vue";
 import Counter from "@/components/Counter.vue";
 import LoadingModal from "@/components/LoadingModal.vue";
+import { Role } from "@/roles";
 
 export default {
   components: {
@@ -176,6 +177,9 @@ export default {
         return false;
       }
 
+      return true;
+    },
+    validateCardInfo() {
       if (!this.cardNumber) {
         alert("Insira o número de cartão");
         return false;
@@ -201,9 +205,17 @@ export default {
     },
     async submit() {
       if (!this.validateZipCode()) return;
-      // TODO: more validation
+      if (!this.validateCardInfo()) return;
 
-      // TODO: talk to the server
+      if (this.$store.getters.userRole !== Role.Customer) {
+        alert("Por favor, faça login antes de realizar uma compra");
+        this.$router.push({
+          name: "login",
+          query: { from: this.$route.name },
+        });
+        return;
+      }
+
       this.isLoading = true;
       await mock.fetchDelay();
       this.isLoading = false;
