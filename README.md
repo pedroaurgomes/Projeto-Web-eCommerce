@@ -174,7 +174,12 @@ Sem problemas.
 
 ### 8. Comentários
 
-Sem comentários.
+Os mockups iniciais incluiam as seguintes páginas que foram removidas da implementação:
+- Página de pedidos (cliente)
+- Página de pedidos (admin)
+- Página de checkout (agora está integrada com a página de carrinho)
+- Página de cadastro (agora é um modal em cima da página de login)
  
- ## Links
-  * [Mockups no Figma](https://www.figma.com/file/pkmbaQasRYcu4X9yN1edqh/Web?node-id=0%3A1)
+## Links
+
+ * [Mockups no Figma](https://www.figma.com/file/pkmbaQasRYcu4X9yN1edqh/Web?node-id=0%3A1)
