@@ -27,7 +27,7 @@ const router = createRouter({
       path: "/cart",
       name: "cart",
       component: () => import("../views/CartView.vue"),
-      meta: { authorize: Role.Any }
+      meta: { authorize: Role.Newcomer | Role.Customer }
     },
     {
       path: "/login",
@@ -48,25 +48,25 @@ const router = createRouter({
       meta: { authorize: Role.Customer | Role.Admin }
     },
     {
-      path: "/users",
+      path: "/admin/users",
       name: "users",
       component: () => import("../views/UsersAdminView.vue"),
       meta: { authorize: Role.Admin }
     },
     {
-      path: "/products",
+      path: "/admin/products",
       name: "products",
       component: () => import("../views/ProductListAdminView.vue"),
       meta: { authorize: Role.Admin }
     },
     {
-      path: "/editProduct/:id",
+      path: "/admin/editProduct/:id",
       name: "editProduct",
       component: () => import("../views/ProductFormAdminView.vue"),
       meta: { authorize: Role.Admin }
     },
     {
-      path: "/addProduct",
+      path: "/admin/addProduct",
       name: "addProduct",
       component: () => import("../views/ProductFormAdminView.vue"),
       meta: { authorize: Role.Admin }

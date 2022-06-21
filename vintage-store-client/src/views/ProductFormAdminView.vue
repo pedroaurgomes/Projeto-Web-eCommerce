@@ -101,6 +101,11 @@ export default {
 
     (async () => {
       const product = await this.$store.dispatch("fetchOrGetProduct", this.$route.params.id);
+      if (product instanceof Error) {
+        this.$router.replace({ name: "404" });
+        return;
+      }
+
       for (const key of Object.keys(product)) {
         if (typeof product[key] !== "string") this[key] = product[key].toString();
         else this[key] = product[key];

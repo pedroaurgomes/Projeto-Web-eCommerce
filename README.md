@@ -98,7 +98,57 @@ Verifique os mock-ups de todas as páginas na pasta "mockup", ou através dos li
 
 ### 4. Plano de teste
 
+#### Testando o fluxo de usuário cliente
+
+1. Abra o site na página principal
+2. Selecione um produto qualquer
+3. Na página de descrição de produto, selecione a cor e quantidade desejada
+4. Clique em 'comprar', o site irá para a página de carrinho
+5. Volte para a página inicial clicando na logo do site na barra do topo
+6. Volte para a etapa 2 até que tenha produtos suficientes no carrinho
+7. Navegue até a página de carrinho através do botão "carrinho" na barra do topo
+8. Insira o CEP desejado, pressione o botão "calcular". O valor do frete aparecerá em sua seção designada.
+9. Selecione o cartão desejado e insira os dados de cartão (podem ser quaisquer números).
+10. Pressione "Finalizar" para finalizar a compra. O usuário será notificado de que precisa estar logado para realizar a operação e será redirecionado para a página de login.
+11. Para cadastrar uma nova conta, na página de login, pressione "Cadastrar-se agora". Um modal deve aparecer onde as informações de cadastro podem ser inseridas.
+12. Pressione "Cadastrar". O usuário será redirecionado novamente para a página de carrinho para poder finalizar a compra.
+13. Insira novamente os dados de cep e cartão e pressione "Finalizar". Um popup aparecerá indicando que a operação foi bem sucedida.
+
+#### Verificando e alternado informações de conta
+
+1. É possível verificar as opções da conta através da página "Minha Conta" que pode ser acessada através do botão na top bar que está disponível somente para usuários logados como cliente.
+2. Na página de "Minha Conta", modifique algum dado e pressione "Salvar". Os dados serão modificados e o usuário poderá recarregar a página a vontade sem que os dados se alterem.
+3. Para finalizar a interação, pressione "Sair". O usuário será redirecionado para a página inicial.
+
+#### Testando permissões para usuário cliente
+
+1. O usuário cliente não possui acesso às páginas de admin. Dessa forma, qualquer tentativa de acessar uma página de admin, como por exemplo a rota "/admin/users", resultará numa mensagem de erro e a navegação será cancelada.
+
+#### Fazendo login como administrador
+
+1. Abra a página de "Login" através da barra do topo.
+2. Utilize nome de usuário e senha "admin" para acessar a conta de administrador. O usuário será redirecionado para a página de "Minha conta".
+
+#### Editando produtos
+
+1. Abra a página de "Produtos" na barra do topo. Lá, é possível remover, editar e adicionar produtos.
+2. Para adicionar um novo produto, clique em "Novo Produto" no fim da página. Um formulário de produto será aberto.
+3. Selecione uma imagem e preencha os outros dados do formulário. Por fim, pressione "Salvar". O usuário será redirecionado de volta para a página de produtos, onde o novo produtos deverá aparecer listado. Vale notar que a imagem do produto se tornará inválida caso a página seja recarrecada, diferentemente dos outros dados que são persistentes no `localStorage`.
+4. Para editar um produto, pressione o icone com o lápis. O mesmo formulário de produto será aberto, mas com os dados já preenchidos de acordo com o produto selecionado. Altere os dados desejados. Clique em "Salvar". O usuário será redirecionado novamente para a página de "Produtos" e poderá ver suas alterações.
+
+#### Editando usuários
+
+1. Acesse a página de "Usuários" através da barra de topo.
+2. Através dessa página é possível remover usuários ou editar seus papéis. Clique no botão com o ícone de lápis para editar o papel de um usuário. Altere o papel de um usuário de cliente para admin. Clique em "Salvar". O papel desse usuário foi modificado e, caso seja feito o login com ele, ele terá visão de admin.
+9. Remova um usuário clicando no botão de "X". O site pedirá confirmação ao administrador. Caso seja confirmado, o usuário será deletado. Essa mudança persiste através de reloads da página.
+
+#### Testando permissões de acesso
+
+1. Administradores não possuem permissão para acessar a página de carrinho. Para testar isso, navegue até a página inicial e selecione um produto qualquer. Na página de descrição de produto, o botão de "Comprar" estará desativado. Além disso, qualquer tentativa de acessar a rota "/cart" diretamente resultará numa mensagem de erro.
+
 ### 5. Resultados dos testes
+
+Todos os testes obtiveram os resultados esperados.
 
 ### 6. Compilando e rodando
 
@@ -109,11 +159,22 @@ cd html
 python3 -m http.server
 ```
 
+Para testar o site clientside entregues na **Milestone 2**, acessar a pasta `vintage-store-client` e rodar os seguintes comandos:
+
+```bash
+npm install
+npm run dev
+```
+
 Em seguida, acesse [http://localhost:8000](http://localhost:8000) para ver as páginas.
 
 ### 7. Problemas
 
+Sem problemas.
+
 ### 8. Comentários
+
+Sem comentários.
  
  ## Links
   * [Mockups no Figma](https://www.figma.com/file/pkmbaQasRYcu4X9yN1edqh/Web?node-id=0%3A1)

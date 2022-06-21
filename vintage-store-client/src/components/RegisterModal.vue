@@ -143,7 +143,11 @@ export default {
         return;
       }
 
-      this.$router.push({ name: "account" });
+      if (this.$route.query.from) {
+        this.$router.replace({ name: this.$route.query.from });
+      } else {
+        this.$router.push({ name: "account" });
+      }
     }
   }
 }

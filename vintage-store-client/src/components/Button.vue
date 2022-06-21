@@ -3,6 +3,7 @@
     class="button"
     :class="classList"
     :style="style"
+    :disabled="disabled"
     ref="button"
   >
     <slot></slot>
@@ -32,10 +33,16 @@ export default {
       type: String,
       require: false,
       default: "md",
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
     }
   },
   computed: {
     style() {
+      if (this.disabled) return { backgroundColor: "var(--light-gray)" };
       if (this.type === "filled") {
         let styleObj = {
           backgroundColor: `var(--${this.color})`
@@ -67,6 +74,7 @@ export default {
     classList() {
       const list = [];
       if (this.type === "outlined") list.push("outlined");
+      if (this.disabled) list.push("disabled");
       list.push(this.normalizedSize);
       return list.join(" ");
     }
@@ -82,7 +90,6 @@ export default {
   display: inline-block;
   font-size: 1em;
   border-radius: 50px;
-  cursor: pointer;
   transition: box-shadow var(--transition-speed) ease;
   transition: background-color var(--transition-speed) ease;
   box-sizing: border-box;
@@ -90,7 +97,11 @@ export default {
   width: fit-content;
 }
 
-.button:hover {
+.button:not(.disabled) {
+  cursor: pointer;
+}
+
+.button:not(.disabled):hover {
   box-shadow: var(--dark-gray) 2px 2px 4px 0px;
 }
 
@@ -110,6 +121,10 @@ export default {
 .button.btn-lg {
   padding: 0.625em 1.25em;
   font-size: 1.4em;
+}
+
+.button.disabled {
+  color: var(--black);
 }
 
 /* TODO: define "btn-xl" */

@@ -14,7 +14,7 @@
         <Counter v-model="quantity"></Counter>
         <p class="no-margin">Total: {{ formatPrice(price * quantity) }}</p>
         <p class="no-margin">Unitário: {{ formatPrice(price) }} ({{ quantity }}x)</p>
-        <Button @click="addToCart">Comprar</Button>
+        <Button @click="addToCart" :disabled="isAdmin">Comprar</Button>
       </div>
     </div>
     <div>
@@ -31,6 +31,7 @@ import { formatPrice } from "@/utils";
 import Button from "@/components/Button.vue";
 import Counter from "@/components/Counter.vue";
 import Loading from "@/components/Loading.vue";
+import { Role } from "@/roles";
 
 export default {
   components: {
@@ -62,6 +63,9 @@ export default {
     id() {
       return parseInt(this.$route.params.id);
     },
+    isAdmin() {
+      return this.$store.getters.userRole === Role.Admin;
+    }
   },
   methods: {
     formatPrice,
@@ -75,6 +79,10 @@ export default {
     },
     async fetchProduct() {
       const product = await this.$store.dispatch("fetchOrGetProduct", this.id);
+      if (product instanceof Error) {
+        this.$router.replace({ name: "404" });
+        return;
+      }
       this.title = product.title;
       this.brand = product.brand;
       this.description = product.description;
