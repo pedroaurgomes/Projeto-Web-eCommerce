@@ -92,19 +92,38 @@ export default {
     inputWidth: 25,
   }),
   methods: {
+    validateEmail() {
+      return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email);
+    },
     async submit() {
-      if((/^[a-zA-Z\s]*$/.test(this.name))
-      && (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email))
-      && (/^[a-zA-Z\s0-9.,]*$/.test(this.address))
-      && (/^[a-zA-Z\s]*$/.test(this.city))
-      && (/^[a-zA-Z\s]*$/.test(this.extra))
-      && (/^[0-9]*$/.test(this.phone))){
-        this.isLoading = true;
-        await this.sendRegistration();
-        this.isLoading = false;
-      }else{
-        alert("Dados Inconsistentes!");
+      if (!this.name) {
+        alert("Nome precisa ser preenchido");
+        return;
       }
+
+      if (!this.validateEmail()) {
+        alert("Email não está no formato esperado");
+        return;
+      }
+
+      if (!this.address) {
+        alert("Endereço precisa ser preenchido");
+        return;
+      }
+
+      if (!this.city) {
+        alert("Cidade precisa ser preenchida");
+        return;
+      }
+
+      if (!/^[0-9]+$/.test(this.phone)) {
+        alert("Telefone precisa ser preenchido e somente caracteres numericos");
+        return;
+      }
+
+      this.isLoading = true;
+      await this.sendRegistration();
+      this.isLoading = false;
     },
     async sendRegistration() {
       const res = await this.$store.dispatch("currentUser/register", {

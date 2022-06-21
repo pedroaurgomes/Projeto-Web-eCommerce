@@ -71,7 +71,7 @@ export async function updateProduct(product) {
   const products = internalGetProducts();
   const idx = products.findIndex(p => p.id === product.id);
   if (idx < 0) return { ok: false, error: "product could not be found" };
-  products[idx] = product;
+  Object.assign(products[idx], product);
   internalSetProducts(products);
   return { ok: true, product };
 }
@@ -101,6 +101,16 @@ export async function updateUser(update) {
   users[idx] = { ...users[idx], ...update };
   internalSetUsers(users);
   return { ok: true, user: users[idx] };
+}
+
+export async function deleteUser(userId) {
+  await fetchDelay();
+  const users = internalGetUsers();
+  const idx = users.findIndex(u => u.id === userId);
+  if (idx < 0) return { ok: false, error: "user not found" };
+  users.splice(idx, 1);
+  internalSetUsers(users);
+  return { ok: true };
 }
 
 export async function login({ email, password }) {

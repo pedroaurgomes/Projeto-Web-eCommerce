@@ -58,12 +58,14 @@ export default {
   },
   computed: {
     filteredProducts() {
-      if (this.filterItems.length === 0) return this.products;
+      // First, filter out the products that are not in stock.
+      const inStock = this.products.filter(p => p.nInStock > 0);
+      if (this.filterItems.length === 0) return inStock;
       const filters = this.filterItems.map(i => i.toLowerCase());
-      return this.products
+      return inStock
         .filter(p =>
           filters.some(f => p.title.toLocaleLowerCase().indexOf(f) !== -1)
-          || filters.includes(p.brand.toLocaleLowerCase())
+          || (filters.includes(p.brand.toLocaleLowerCase()))
           || (p.category && filters.includes(p.category.toLocaleLowerCase()))
         );
     },

@@ -5,12 +5,16 @@
     <div class="center">
       <div class="table">
         <div class="table-row col-4 table-head">
-          <div class="span-cols-2">Usuário</div>
+          <div>Usuário</div>
+          <div>Nome</div>
           <div>Cargo</div>
         </div>
         <ul>
           <li v-for="(user, i) in users" class="table-row col-4" :key="i">
-            <div class="span-cols-2">
+            <div>
+              <p>{{ user.email }}</p>
+            </div>
+            <div>
               <p>{{ user.name }}</p>
             </div>
             <div>
@@ -85,7 +89,7 @@ export default {
     async deleteUser(uid) {
       if (!confirm("Tem certeza de que gostaria de remover esse usuário?")) return;
       this.isLoading = true;
-      await this.$store.dispatch("deleteUser", uid);
+      await this.$store.dispatch("userAdmin/deleteUser", uid);
       this.isLoading = false;
     },
     printableType(type) {

@@ -68,6 +68,24 @@ const store = createStore({
       localStorage.removeItem("currentUser");
       commit("currentUser/reset");
     },
+    async purchase({ commit, dispatch, getters }) {
+      // Perform operations concurrently if necessary.
+      const promises = [];
+      for (const item of getters.cartItems) {
+        promises.push((async () => {
+          if (!item.product) {
+            item.product = await dispatch("fetchOrGetProduct", item.productId);
+          }
+          mock.updateProduct({
+            id: item.productId,
+            nSold: item.product.nSold + 1,
+            nInStock: item.product.nInStock - 1,
+          })
+        })());
+      }
+      await Promise.all(promises);
+      commit("clearCart");
+    }
   }
 });
 

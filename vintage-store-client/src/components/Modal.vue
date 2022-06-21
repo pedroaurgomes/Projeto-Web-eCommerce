@@ -1,6 +1,6 @@
 <template>
-    <div class="modal-container" @click="clickOutside">
-        <div class="modal" @click.stop="" :style="style">
+    <div class="modal-container" @mousedown="clickOutside">
+        <div class="modal" @mousedown.stop="" :style="style">
             <slot></slot>
         </div>
     </div>

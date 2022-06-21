@@ -18,6 +18,13 @@
       :width="30"
     ></TextField>
     <TextField
+      label="brand"
+      name="Marca"
+      placeholder="Marca..."
+      v-model="brand"
+      :width="30"
+    ></TextField>
+    <TextField
       label="description"
       name="Descrição"
       placeholder="Descrição curta..."
@@ -83,7 +90,6 @@ export default {
     defaultColor: 0,
     imgSrc: "",
     longDescription: "",
-    nSold: "",
     nInStock: "",
   }),
   created() {
@@ -119,11 +125,6 @@ export default {
         return;
       }
 
-      if (!/^\d+$/.test(this.nSold)) {
-        alert("Número de vendas precisa ser um número válido");
-        return;
-      }
-
       if (!/^\d+$/.test(this.nInStock)) {
         alert("Número de produtos em estoque precisa ser um número válido");
         return;
@@ -137,7 +138,7 @@ export default {
         defaultColor: this.defaultColor,
         imgSrc: this.imgSrc,
         longDescription: this.longDescription,
-        nSold: (this.nSold && parseInt(this.nSold)) || 0,
+        nSold: 0,
         nInStock: parseInt(this.nInStock),
       };
 

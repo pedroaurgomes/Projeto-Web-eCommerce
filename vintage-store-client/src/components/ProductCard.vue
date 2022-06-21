@@ -56,6 +56,10 @@ export default {
   border: 1px var(--very-light-gray) solid;
 }
 
+.product-image {
+  max-width: 400px;
+}
+
 .product-card:hover {
   box-shadow: 5px 4px 6px var(--very-light-gray);
   cursor: pointer;

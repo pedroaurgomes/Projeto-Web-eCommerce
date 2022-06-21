@@ -14,7 +14,7 @@ export default [
     id: "123.456.789-00",
     name: "Someone",
     email: "someone@somewhere.com",
-    phone: "(12) 3456-7890",
+    phone: "1234567890",
     address: "Some street, 1234",
     city: "Some City",
     extra: "",

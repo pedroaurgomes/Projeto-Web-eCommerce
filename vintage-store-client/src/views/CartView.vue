@@ -217,10 +217,9 @@ export default {
       }
 
       this.isLoading = true;
-      await mock.fetchDelay();
+      await this.$store.dispatch("purchase");
       this.isLoading = false;
       alert("Compra concluida com sucesso!");
-      this.$store.commit("clearCart");
       this.$router.push({ name: "home" });
     }
   },
