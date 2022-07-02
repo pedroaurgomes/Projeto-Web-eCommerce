@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     id() {
-      return parseInt(this.$route.params.id);
+      return this.$route.params.id;
     },
     isAdmin() {
       return this.$store.getters.userRole === Role.Admin;

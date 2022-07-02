@@ -17,12 +17,18 @@ export default {
   },
   actions: {
     async fetchProduct({ commit }, productId) {
-      const product = await mock.fetchProduct(productId);
+      // const product = await mock.fetchProduct(productId);
+      const result = await fetch(`http://localhost:8080/api/product/${productId}`);
+      const { ok, error, product } = await result.json();
+      if (!ok) return new Error(error);
       commit("addProductToCache", product);
       return product;
     },
     async fetchProducts({ commit }) {
-      const products = await mock.fetchProducts();
+      // const products = await mock.fetchProducts();
+      const result = await fetch('http://localhost:8080/api/products');
+      const { ok, error, products } = await result.json();
+      if (!ok) return new Error(error);
       for (const p of products) {
           commit("addProductToCache", p);
       }
@@ -34,7 +40,12 @@ export default {
       return await dispatch("fetchProduct", productId);
     },
     async deleteProduct({ commit }, productId) {
-      const res = await mock.deleteProduct(productId);
+      //const res = await mock.deleteProduct(productId);
+      const res = await fetch(
+        `http://localhost:8080/api/product/${productId}`,
+        { method: "DELETE", }
+      ).then(o => o.json());
+      
       if (!res.ok) return new Error(res.error);
       commit("removeProduct", productId);
       return true;
