@@ -15,12 +15,7 @@ mongoose.connect("mongodb://localhost:27017/test")
 app.use(cors());
 app.use(bodyParser.json());
 
-// bodyparser - pato n sabe fzer JSON.parse()
-app.get('/', async (req, res) => {
-  res.send('hello, fahep');
-});
 
-/*
 app.post('/api/populate_products', async (req, res) => {
   const hardcoded_products = require('./products');
   const promises = [];
@@ -29,7 +24,7 @@ app.post('/api/populate_products', async (req, res) => {
       ...product,
       id: new mongoose.Types.ObjectId(),
     });
-    
+
     promises.push(new Promise((resolve, reject) => {
       p.save(err => {
         if (err) reject(err);
@@ -48,7 +43,6 @@ app.post('/api/populate_products', async (req, res) => {
     });
   }
 });
-*/
 
 async function okOrError(res, f) {
   try {
@@ -100,6 +94,8 @@ app.patch('/api/product/:id', async (req, res) => {
 });
 
 /*
+// TODO: Implement server side
+
 async function fetchUsers() {
   return { ok: true, users: internalGetUsers() };
 }
