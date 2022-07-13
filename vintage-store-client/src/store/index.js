@@ -59,14 +59,30 @@ const store = createStore({
   },
   actions: {
     async login({ commit }, { email, password }) {
-      const res = await mock.login({ email, password });
-      if (!res.ok) return new Error(res.error);
-      commit("currentUser/register", res.user);
-      return res.user;
+
+      const result = await fetch("http://localhost:8080/api/users", { method: "GET" });
+
+      const { ok, error, users } = await result.json();
+      if (!ok) return new Error(error);
+      
+      for(const user of users){
+        if(user.email==email){
+          if(user.password==password){
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            commit("currentUser/register", user);
+            return user;
+          }else{
+            return { error: "wrong password" };
+          }
+        }
+      }
+    return { error: "user not found" };
+
     },
     async logout({ commit }) {
       localStorage.removeItem("currentUser");
       commit("currentUser/reset");
+      commit("clearCart"); //TODO: clean Cart
     },
     async purchase({ commit, dispatch, getters }) {
       // Perform operations concurrently if necessary.
