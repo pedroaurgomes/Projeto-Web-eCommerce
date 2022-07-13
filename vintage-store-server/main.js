@@ -8,7 +8,7 @@ const schemas = require('./models/schemas');
 const app = express();
 const port = 8080;
 
-mongoose.connect("mongodb://localhost:27017/test")
+mongoose.connect("mongodb+srv://platnu:J991006309@test.7n5fpri.mongodb.net/?retryWrites=true&w=majority")
   .then(() => console.log('connected to mongodb'))
   .catch(e => console.error(e));
 
@@ -87,6 +87,70 @@ app.patch('/api/product/:id', async (req, res) => {
   console.log(req.body);
   await okOrError(res, async () => {
     await schemas.Product.findOneAndUpdate(
+      { id: req.params.id },
+      req.body
+    );
+  })
+});
+
+
+app.post('/api/populate_users', async (req, res) => {
+  const hardcoded_users = require('./users');
+  const promises = [];
+  for (const user of hardcoded_users) {
+    const p = new schemas.User({
+      ...user,
+      id: new mongoose.Types.ObjectId(),
+    });
+
+    promises.push(new Promise((resolve, reject) => {
+      p.save(err => {
+        if (err) reject(err);
+        else resolve()
+      })
+    }));
+  }
+
+  try {
+    await Promise.all(promises);
+    res.status(200).json({ ok: true });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+app.get('/api/users', async (req, res) => {
+  await okOrError(res, async () => ({
+    users: await schemas.User.find({})
+  }));
+});
+
+app.get('/api/user/:id', async (req, res) => {
+  await okOrError(res, async () => ({
+    user: assertNotNull(await schemas.User.findOne({ id: req.params.id })),
+  }));
+});
+
+app.delete('/api/user/:id', async (req, res) => {
+  await okOrError(res, async () => {
+    await schemas.User.deleteOne({ id: req.params.id });
+  });
+});
+
+app.post('/api/user', async (req, res) => {
+  await okOrError(res, async () => {
+    const user = new schemas.User(req.body);
+    await user.save();
+  });
+});
+
+app.patch('/api/user/:id', async (req, res) => {
+  console.log(req.body);
+  await okOrError(res, async () => {
+    await schemas.User.findOneAndUpdate(
       { id: req.params.id },
       req.body
     );

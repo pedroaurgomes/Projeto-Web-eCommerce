@@ -15,3 +15,17 @@ const productSchema = new mongoose.Schema({
 });
 
 module.exports.Product = mongoose.model("Product", productSchema);
+
+const userSchema = new mongoose.Schema({
+  id: String,
+  name: String,
+  email: String,
+  phone: String,
+  address: String,
+  city: String,
+  extra: String,
+  password: String,
+  type: String,
+});
+
+module.exports.User = mongoose.model("User", userSchema);

@@ -1,4 +1,3 @@
-import * as mock from "@/mock";
 
 const store = {
   namespaced: true,
@@ -14,7 +13,11 @@ const store = {
   },
   actions: {
     async fetchUsers({ commit }) {
-      const res = await mock.fetchUsers();
+      const res = await fetch(
+        `http://localhost:8080/api/users}`,
+        { method: "GET", }
+      ).then(o => o.json());
+
       if (!res.ok) return new Error(res.error);
       for (const user of res.users) {
         commit("cacheUser", user);
@@ -22,19 +25,31 @@ const store = {
       return res.users;
     },
     async fetchUser({ commit }, uid) {
-      const res = await mock.fetchUser(uid);
+      const res = await fetch(
+        `http://localhost:8080/api/user/${userId}`,
+        { method: "GET", }
+      ).then(o => o.json());
+
       if (!res.ok) return new Error(res.error);
       commit("cacheUser", res.user);
       return res.user;
     },
     async updateUser({ commit }, update) {
-      const res = await mock.updateUser(update);
+      const res = await fetch(
+        `http://localhost:8080/api/user`,
+        { method: "POST", }
+      ).then(o => o.json());
+
       if (!res.ok) return new Error(res.error);
       commit("cacheUser", res.user);
       return res.user;
     },
     async deleteUser({ commit }, userId) {
-      const res = await mock.deleteUser(userId);
+      const res = await fetch(
+        `http://localhost:8080/api/product/${productId}`,
+        { method: "DELETE", }
+      ).then(o => o.json());
+
       if (!res.ok) return new Error(res.error);
       commit("removeUser", userId);
       return true;
