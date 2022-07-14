@@ -14,7 +14,7 @@ const store = {
   actions: {
     async fetchUsers({ commit }) {
       const res = await fetch(
-        `http://localhost:8080/api/users}`,
+        `http://localhost:8080/api/users`,
         { method: "GET", }
       ).then(o => o.json());
 
