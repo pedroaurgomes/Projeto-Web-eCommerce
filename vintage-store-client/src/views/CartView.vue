@@ -117,7 +117,6 @@
 import { mapGetters } from "vuex";
 
 import { formatPrice } from "@/utils";
-import * as mock from "@/mock";
 
 import TextField from "@/components/TextField.vue";
 import Button from "@/components/Button.vue";

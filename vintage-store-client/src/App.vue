@@ -8,7 +8,6 @@
 import { mapGetters } from "vuex";
 
 import { Error as RouterError } from "@/router/errors";
-import * as mock from "@/mock";
 
 import TopBar from "@/components/TopBar.vue";
 import Footer from "@/components/Footer.vue";
@@ -23,7 +22,6 @@ export default {
   }),
   created() {
     if (localStorage.getItem("users") === null) {
-      mock.init();
     } else {
       // If there is a current user that was already logged in, login again
       // with the same data.
