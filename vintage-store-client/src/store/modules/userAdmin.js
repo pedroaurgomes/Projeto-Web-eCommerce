@@ -34,7 +34,7 @@ const store = {
       commit("cacheUser", res.user);
       return res.user;
     },
-    async updateUser({ commit }, id, type) {
+    async updateUser({ commit }, { id, type }) {
       const res = await fetch(
         `http://localhost:8080/api/user/${id}`,{
         method: "PATCH",
