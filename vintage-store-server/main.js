@@ -8,7 +8,7 @@ const schemas = require('./models/schemas');
 const app = express();
 const port = 8080;
 
-mongoose.connect("mongodb+srv://platnu:J991006309@test.7n5fpri.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://platnu:J991006309@test.6c4mzyj.mongodb.net/?retryWrites=true&w=majority")
   .then(() => console.log('connected to mongodb'))
   .catch(e => console.error(e));
 
@@ -20,10 +20,7 @@ app.post('/api/populate_products', async (req, res) => {
   const hardcoded_products = require('./products');
   const promises = [];
   for (const product of hardcoded_products) {
-    const p = new schemas.Product({
-      ...product,
-      id: new mongoose.Types.ObjectId(),
-    });
+    const p = new schemas.Product(product);
 
     promises.push(new Promise((resolve, reject) => {
       p.save(err => {
@@ -66,22 +63,19 @@ app.get('/api/products', async (req, res) => {
 
 app.get('/api/product/:id', async (req, res) => {
   await okOrError(res, async () => ({
-    product: assertNotNull(await schemas.Product.findOne({ id: req.params.id })),
+    product: assertNotNull(await schemas.Product.findOne({ _id: req.params.id })),
   }));
 });
 
 app.delete('/api/product/:id', async (req, res) => {
   await okOrError(res, async () => {
-    await schemas.Product.deleteOne({ id: req.params.id });
+    await schemas.Product.deleteOne({ _id: req.params.id });
   });
 });
 
 app.post('/api/product', async (req, res) => {
   await okOrError(res, async () => {
-    const product = new schemas.Product({
-      ...req.body,
-      id: new mongoose.Types.ObjectId(),
-    });
+    const product = new schemas.Product(req.body);
     console.log("Product: ");
     console.log(product);
 
@@ -95,7 +89,7 @@ app.patch('/api/product/:id', async (req, res) => {
   console.log(req.body);
   await okOrError(res, async () => {
     await schemas.Product.findOneAndUpdate(
-      { id: req.params.id },
+      { _id: req.params.id },
       req.body
     );
   })
@@ -106,10 +100,7 @@ app.post('/api/populate_users', async (req, res) => {
   const hardcoded_users = require('./users');
   const promises = [];
   for (const user of hardcoded_users) {
-    const p = new schemas.User({
-      ...user,
-      id: new mongoose.Types.ObjectId(),
-    });
+    const p = new schemas.User(user);
 
     promises.push(new Promise((resolve, reject) => {
       p.save(err => {
@@ -138,13 +129,13 @@ app.get('/api/users', async (req, res) => {
 
 app.get('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => ({
-    user: assertNotNull(await schemas.User.findOne({ id: req.params.id })),
+    user: assertNotNull(await schemas.User.findOne({ _id: req.params.id })),
   }));
 });
 
 app.delete('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => {
-    await schemas.User.deleteOne({ id: req.params.id });
+    await schemas.User.deleteOne({ _id: req.params.id });
   });
 });
 
@@ -159,7 +150,17 @@ app.patch('/api/user/:id', async (req, res) => {
   console.log(req.body);
   await okOrError(res, async () => {
     await schemas.User.findOneAndUpdate(
-      { id: req.params.id },
+      { _id: req.params.id },
+      req.body
+    );
+  })
+});
+
+app.patch('/api/user/:email', async (req, res) => {
+  console.log(req.body);
+  await okOrError(res, async () => {
+    await schemas.User.findOneAndUpdate(
+      { email: req.params.email },
       req.body
     );
   })

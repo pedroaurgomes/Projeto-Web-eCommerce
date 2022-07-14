@@ -28,6 +28,7 @@ export default {
     register(state, user) {
       state.role = userTypeToRole(user.type);
       Object.assign(state, user);
+      if (user._id) state.id = user._id;
     },
     tryLoadFromLocalStorage(state) {
       let currentUser = localStorage.getItem("currentUser");
