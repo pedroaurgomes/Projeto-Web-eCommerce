@@ -83,6 +83,7 @@ export default {
       console.log(product);
 
       if (!res.ok) return new Error(res.error);
+      res.product.id = res.product._id;
       commit("addProductToCache", res.product);
       return res.product;
     },

@@ -99,7 +99,7 @@ app.post('/api/product', async (req, res) => {
 app.patch('/api/product/:id', async (req, res) => {
   await okOrError(res, async () => {
     const product = await schemas.Product.findOneAndUpdate(
-      { id: req.params.id },
+      { _id: req.params.id },
       req.body,
       { new: true }
     );
