@@ -133,7 +133,7 @@ Verifique os mock-ups de todas as páginas na pasta "mockup", ou através dos li
 
 1. Abra a página de "Produtos" na barra do topo. Lá, é possível remover, editar e adicionar produtos.
 2. Para adicionar um novo produto, clique em "Novo Produto" no fim da página. Um formulário de produto será aberto.
-3. Selecione uma imagem e preencha os outros dados do formulário. Por fim, pressione "Salvar". O usuário será redirecionado de volta para a página de produtos, onde o novo produtos deverá aparecer listado. Vale notar que a imagem do produto se tornará inválida caso a página seja recarrecada, diferentemente dos outros dados que são persistentes no `localStorage`.
+3. Selecione uma imagem e preencha os outros dados do formulário. Por fim, pressione "Salvar". O usuário será redirecionado de volta para a página de produtos, onde o novo produtos deverá aparecer listado. Vale notar que a imagem do produto se tornará inválida caso a página seja recarregada, diferentemente dos outros dados que são persistentes no `localStorage`.
 4. Para editar um produto, pressione o icone com o lápis. O mesmo formulário de produto será aberto, mas com os dados já preenchidos de acordo com o produto selecionado. Altere os dados desejados. Clique em "Salvar". O usuário será redirecionado novamente para a página de "Produtos" e poderá ver suas alterações.
 
 #### Editando usuários
