@@ -26,6 +26,8 @@ export default {
   mutations: {
     reset: state => Object.assign(state, initialState()),
     register(state, user) {
+      console.log("type: ")
+      console.log(user)
       if(user.type) state.role = userTypeToRole(user.type);
       Object.assign(state, user);
       if (user._id) state.id = user._id;
@@ -73,9 +75,10 @@ export default {
       }).then(o => o.json());
       console.log("Res: ")
       console.log(res);
+      console.log(user);
 
       if (!res.ok) return new Error(res.error);
-      commit("register", res.user);
+      commit("register", user);
       return res.user;
     },
   },
