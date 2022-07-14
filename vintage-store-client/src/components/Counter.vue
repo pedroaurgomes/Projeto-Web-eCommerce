@@ -2,9 +2,9 @@
 <template> 
   <div class="counter">
     <button
-      @click="$emit('update:modelValue', modelValue + 1)"
+      @click="$emit('update:modelValue', modelValue - 1)"
       style="font-weight: bold"
-    > + </button>
+    > - </button>
     <input
       type="number"
       min="1"
@@ -13,9 +13,9 @@
       :style="{'width': `${textSize}em`}"
     >
     <button
-      @click="$emit('update:modelValue', Math.max(modelValue - 1, 1))"
+      @click="$emit('update:modelValue', Math.max(modelValue + 1, 1))"
       style="font-weight: bold"
-    > - </button>
+    > + </button>
   </div>
 </template>
 
