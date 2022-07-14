@@ -148,11 +148,9 @@ export default {
       };
 
       this.isLoading = true;
-      // If we are editing an existing object
       let res;
       if (this.$route.params.id) {
         productObj.id = this.$route.params.id;
-        console.log("Id do update: "+productObj.id);
         res = await this.$store.dispatch("updateProduct", productObj);
       } else {
         res = await this.$store.dispatch("createProduct", productObj);

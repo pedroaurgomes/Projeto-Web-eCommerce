@@ -98,35 +98,4 @@ export default {
   gap: 1em;
 }
 
-/* #home-image {
-  background-color: var(--green);
-  width: 100%;
-  height: 60vh;
-  margin-bottom: 1em;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-#home-image > fieldset {
-  border: none;
-}
-
-#home-image > fieldset > input[type="radio"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  padding: 0.1em;
-  border: 0.2em solid var(--white);
-  background-color: var(--white);
-  border-radius: 50%;
-}
-
-#home-image > fieldset > input[type="radio"]:checked {
-  background-color: var(--dark-gray);
-} */
 </style>
