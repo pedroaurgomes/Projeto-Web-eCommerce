@@ -26,9 +26,10 @@ export default {
   mutations: {
     reset: state => Object.assign(state, initialState()),
     register(state, user) {
-      state.role = userTypeToRole(user.type);
+      if(user.type) state.role = userTypeToRole(user.type);
       Object.assign(state, user);
       if (user._id) state.id = user._id;
+      localStorage.setItem("currentUser", JSON.stringify(state));
     },
     tryLoadFromLocalStorage(state) {
       let currentUser = localStorage.getItem("currentUser");
@@ -41,13 +42,38 @@ export default {
   },
   actions: {
     async register({ commit }, user) {
-      const res = await mock.registerUser(user);
+      //const res = await mock.registerUser(user); //
+      const res = await fetch(`http://localhost:8080/api/user/`, { 
+        method: "POST",
+        body: JSON.stringify({
+          name: user.name,
+          email: user.email,
+          address: user.address,
+          city: user.city,
+          extra: user.extra,
+          phone: user.phone
+        }),
+      
+      }); // TA CERTO ??
+
       if (!res.ok) return new Error(res.error);
       commit("register", user);
       return res.user;
     },
-    async update({ commit }, user) {
-      const res = await mock.updateCurrentUser(user);
+    async update({ commit, state }, user) {
+      // const res = await mock.updateCurrentUser(user); //
+      //const res = await fetch(`http://localhost:8080/api/user/${user.email}`, { method: "PATCH" }); // TA CERTO ??
+
+      const res = await fetch(`http://localhost:8080/api/user/${state.id}`, { 
+        method: "PATCH",
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      }).then(o => o.json());
+      console.log("Res: ")
+      console.log(res);
+
       if (!res.ok) return new Error(res.error);
       commit("register", res.user);
       return res.user;

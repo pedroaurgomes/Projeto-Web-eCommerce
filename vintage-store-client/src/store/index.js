@@ -60,24 +60,15 @@ const store = createStore({
   actions: {
     async login({ commit }, { email, password }) {
 
-      const result = await fetch("http://localhost:8080/api/users", { method: "GET" });
+      const result = await fetch(
+        `http://localhost:8080/api/login?email=${email}&password=${password}`,
+        { method: "GET" }
+      );
 
-      const { ok, error, users } = await result.json();
+      const { ok, error, user } = await result.json();
       if (!ok) return new Error(error);
-      
-      for(const user of users){
-        if(user.email==email){
-          if(user.password==password){
-            localStorage.setItem("currentUser", JSON.stringify(user));
-            commit("currentUser/register", user);
-            return user;
-          }else{
-            return { error: "wrong password" };
-          }
-        }
-      }
-      return { error: "user not found" };
-
+      commit("currentUser/register", user);
+      return user;
     },
     async logout({ commit }) {
       localStorage.removeItem("currentUser");
