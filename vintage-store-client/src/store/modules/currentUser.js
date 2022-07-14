@@ -1,4 +1,3 @@
-import * as mock from "@/mock";
 
 import { Role, userTypeToRole } from "@/roles";
 
@@ -45,7 +44,6 @@ export default {
   },
   actions: {
     async register({ commit }, user) {
-      //const res = await mock.registerUser(user); //
       const res = await fetch(`http://localhost:8080/api/user/`, { 
         method: "POST",
         headers: {
@@ -59,7 +57,6 @@ export default {
       return res.user;
     },
     async update({ commit, state }, user) {
-      // const res = await mock.updateCurrentUser(user); //
       console.log(state);
       const res = await fetch(`http://localhost:8080/api/user/${state.id}`, { 
         method: "PATCH",

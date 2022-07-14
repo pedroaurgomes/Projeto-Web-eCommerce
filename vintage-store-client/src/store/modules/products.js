@@ -1,4 +1,3 @@
-import * as mock from "@/mock";
 
 export default {
   namespaced: false,
@@ -17,7 +16,6 @@ export default {
   },
   actions: {
     async fetchProduct({ commit }, productId) {
-      // const product = await mock.fetchProduct(productId);
       const result = await fetch(`http://localhost:8080/api/product/${productId}`);
       const { ok, error, product } = await result.json();
       if (!ok) return new Error(error);
@@ -26,7 +24,6 @@ export default {
       return product;
     },
     async fetchProducts({ commit }) {
-      // const products = await mock.fetchProducts();
       const result = await fetch('http://localhost:8080/api/products');
       const { ok, error, products } = await result.json();
       if (!ok) return new Error(error);
@@ -42,7 +39,6 @@ export default {
       return await dispatch("fetchProduct", productId);
     },
     async deleteProduct({ commit }, productId) {
-      //const res = await mock.deleteProduct(productId);
       const res = await fetch(
         `http://localhost:8080/api/product/${productId}`,
         { method: "DELETE", }
@@ -60,14 +56,12 @@ export default {
         body: JSON.stringify(product)
       }).then(o => o.json());
 
-      // TODO: verify that the object is valid
       if (!res.ok) return new Error(res.error);
       res.product.id = res.product._id;
       commit("addProductToCache", res.product);
       return product;
     },
     async updateProduct({ commit }, product) {
-      // const res = await mock.updateProduct(product);
       console.log("product: ")
       console.log(product)
       const res = await fetch(`http://localhost:8080/api/product/${product.id}`, { 

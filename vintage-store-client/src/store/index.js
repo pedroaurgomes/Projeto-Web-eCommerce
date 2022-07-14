@@ -1,6 +1,5 @@
 import { createStore } from "vuex";
 
-import * as mock from "@/mock";
 import userAdmin from "./modules/userAdmin";
 import products from "./modules/products";
 import currentUser from "./modules/currentUser";
@@ -83,11 +82,6 @@ const store = createStore({
           if (!item.product) {
             item.product = await dispatch("fetchOrGetProduct", item.productId);
           }
-          mock.updateProduct({
-            id: item.productId,
-            nSold: item.product.nSold + 1,
-            nInStock: item.product.nInStock - 1,
-          })
         })());
       }
       await Promise.all(promises);
