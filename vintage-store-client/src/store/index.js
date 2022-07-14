@@ -76,7 +76,7 @@ const store = createStore({
           }
         }
       }
-    return { error: "user not found" };
+      return { error: "user not found" };
 
     },
     async logout({ commit }) {

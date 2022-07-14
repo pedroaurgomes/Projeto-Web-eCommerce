@@ -78,9 +78,17 @@ app.delete('/api/product/:id', async (req, res) => {
 
 app.post('/api/product', async (req, res) => {
   await okOrError(res, async () => {
-    const product = new schemas.Product(req.body);
+    const product = new schemas.Product({
+      ...req.body,
+      id: new mongoose.Types.ObjectId(),
+    });
+    console.log("Product: ");
+    console.log(product);
+
     await product.save();
   });
+
+  
 });
 
 app.patch('/api/product/:id', async (req, res) => {

@@ -50,11 +50,32 @@ export default {
       commit("removeProduct", productId);
       return true;
     },
-    async createProduct({ commit }, product) {
-      const res = await mock.createProduct(product);
+    async createProduct({ commit,dispatch }, product) {
+      //const res = await mock.createProduct(product);
+      let products = await dispatch('fetchProducts');
+
+      const res = await fetch(
+        `http://localhost:8080/api/product`,
+        { method: "POST",
+        headers: { 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          title: product.title,
+          brand: product.brand,
+          price: product.price,
+          description: product.description,
+          colors: product.colors,
+          defaultColor: product.defaultColor,
+          imgSrc: product.imgSrc,
+          longDescription: product.longDescription,
+          nSold: product.nSold,
+          nInStock: product.nInStock
+        })
+      });
+      
+      // TODO: verify that the object is valid
       if (!res.ok) return new Error(res.error);
-      commit("addProductToCache", res.product);
-      return res.product;
+      commit("addProductToCache", product);
+      return product;
     },
     async updateProduct({ commit }, product) {
       const res = await mock.updateProduct(product);
