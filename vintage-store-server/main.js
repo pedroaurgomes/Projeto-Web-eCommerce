@@ -85,13 +85,24 @@ app.post('/api/product', async (req, res) => {
   
 });
 
+// app.patch('/api/product/:id', async (req, res) => {
+//   console.log(req.body);
+//   await okOrError(res, async () => {
+//     await schemas.Product.findOneAndUpdate(
+//       { _id: req.params.id },
+//       req.body
+//     );
+//   })
+// });
+
 app.patch('/api/product/:id', async (req, res) => {
-  console.log(req.body);
   await okOrError(res, async () => {
-    await schemas.Product.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body
+    const user = await schemas.User.findOneAndUpdate(
+      { id: req.params.id },
+      req.body,
+      { new: true }
     );
+    return { user };
   })
 });
 
