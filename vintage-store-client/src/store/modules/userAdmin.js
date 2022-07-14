@@ -34,11 +34,19 @@ const store = {
       commit("cacheUser", res.user);
       return res.user;
     },
-    async updateUser({ commit }, update) {
+    async updateUser({ commit }, { id, type }) {
       const res = await fetch(
-        `http://localhost:8080/api/user`,
-        { method: "POST", }
-      ).then(o => o.json());
+        `http://localhost:8080/api/user/${id}`,{
+        method: "PATCH",
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: type,
+        }),
+      }).then(o => o.json());
+      console.log("updateUser");
+      console.log(res);
 
       if (!res.ok) return new Error(res.error);
       commit("cacheUser", res.user);
@@ -46,7 +54,7 @@ const store = {
     },
     async deleteUser({ commit }, userId) {
       const res = await fetch(
-        `http://localhost:8080/api/product/${productId}`,
+        `http://localhost:8080/api/user/${userId}`,
         { method: "DELETE", }
       ).then(o => o.json());
 

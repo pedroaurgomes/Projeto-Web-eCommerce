@@ -16,6 +16,7 @@ const productSchema = new mongoose.Schema({
 module.exports.Product = mongoose.model("Product", productSchema);
 
 const userSchema = new mongoose.Schema({
+  id: String,
   name: String,
   email: String,
   phone: String,

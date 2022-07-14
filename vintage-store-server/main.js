@@ -129,13 +129,13 @@ app.get('/api/users', async (req, res) => {
 
 app.get('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => ({
-    user: assertNotNull(await schemas.User.findOne({ _id: req.params.id })),
+    user: assertNotNull(await schemas.User.findOne({ id: req.params.id })),
   }));
 });
 
 app.delete('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => {
-    await schemas.User.deleteOne({ _id: req.params.id });
+    await schemas.User.deleteOne({ id: req.params.id });
   });
 });
 
@@ -146,36 +146,24 @@ app.post('/api/user', async (req, res) => {
   });
 });
 
-// app.patch('/api/user/:id', async (req, res) => {
+app.patch('/api/user/:id', async (req, res) => {
+  await okOrError(res, async () => {
+    const user = await schemas.User.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
+    return { user };
+  })
+});
+
+// New function: Searching user by email (copiado da função anterior, substituindo id por email)
+// app.patch('/api/user/:email', async (req, res) => {
 //   console.log(req.body);
 //   await okOrError(res, async () => {
 //     await schemas.User.findOneAndUpdate(
-//       { id: req.params.id },
+//       { email: req.params.email },
 //       req.body
 //     );
+//     return { user: req.body };
 //   })
 // });
-
-// New function: Searching user by email (copiado da função anterior, substituindo id por email)
-app.patch('/api/user/:id', async (req, res) => {
-  await okOrError(res, async () => {
-    await schemas.User.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body
-    );
-  })
-});
-
-app.patch('/api/user/:email', async (req, res) => {
-  console.log(req.body);
-  await okOrError(res, async () => {
-    await schemas.User.findOneAndUpdate(
-      { email: req.params.email },
-      req.body
-    );
-    return { user: req.body };
-  })
-});
 
 app.get('/api/login', async (req, res) => {
   await okOrError(res, async () => {
