@@ -30,7 +30,8 @@ export default {
       console.log(user)
       if(user.type) state.role = userTypeToRole(user.type);
       Object.assign(state, user);
-      if (user._id) state.id = user._id;
+      console.log("user:" + user);
+      if (user.id) state.id = user.id;
       localStorage.setItem("currentUser", JSON.stringify(state));
     },
     tryLoadFromLocalStorage(state) {
@@ -47,16 +48,11 @@ export default {
       //const res = await mock.registerUser(user); //
       const res = await fetch(`http://localhost:8080/api/user/`, { 
         method: "POST",
-        body: JSON.stringify({
-          name: user.name,
-          email: user.email,
-          address: user.address,
-          city: user.city,
-          extra: user.extra,
-          phone: user.phone
-        }),
-      
-      }); // TA CERTO ??
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      }).then(o => o.json());
 
       if (!res.ok) return new Error(res.error);
       commit("register", user);
@@ -64,8 +60,7 @@ export default {
     },
     async update({ commit, state }, user) {
       // const res = await mock.updateCurrentUser(user); //
-      //const res = await fetch(`http://localhost:8080/api/user/${user.email}`, { method: "PATCH" }); // TA CERTO ??
-
+      console.log(state);
       const res = await fetch(`http://localhost:8080/api/user/${state.id}`, { 
         method: "PATCH",
         headers: {
