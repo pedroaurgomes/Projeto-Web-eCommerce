@@ -79,6 +79,9 @@ export default {
   }),
   created() {
     const user = this.$store.getters["currentUser/get"];
+    // DUVIDA: por que não pegamos o id do user aqui ? this.id = user.id , para podermos usar o id 
+    // depois para darmos fetch -> RESOLVIDO
+ 
     this.name = user.name;
     this.email = user.email;
     this.address = user.address;

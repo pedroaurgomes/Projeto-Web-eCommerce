@@ -8,7 +8,7 @@ const schemas = require('./models/schemas');
 const app = express();
 const port = 8080;
 
-mongoose.connect("mongodb+srv://platnu:J991006309@test.7n5fpri.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://platnu:J991006309@test.6c4mzyj.mongodb.net/?retryWrites=true&w=majority")
   .then(() => console.log('connected to mongodb'))
   .catch(e => console.error(e));
 
@@ -155,15 +155,51 @@ app.post('/api/user', async (req, res) => {
   });
 });
 
+// app.patch('/api/user/:id', async (req, res) => {
+//   console.log(req.body);
+//   await okOrError(res, async () => {
+//     await schemas.User.findOneAndUpdate(
+//       { id: req.params.id },
+//       req.body
+//     );
+//   })
+// });
+
+// New function: Searching user by email (copiado da função anterior, substituindo id por email)
 app.patch('/api/user/:id', async (req, res) => {
-  console.log(req.body);
   await okOrError(res, async () => {
     await schemas.User.findOneAndUpdate(
       { id: req.params.id },
       req.body
     );
+    return { user: req.body };
   })
 });
+
+app.get('/api/login', async (req, res) => {
+  await okOrError(res, async () => {
+    const user = await schemas.User.findOne({ email: req.query.email });
+    if (!user) throw new Error("User not found");
+    console.log(user);
+    console.log(req.query.password)
+    if (user.password != req.query.password) throw new Error("Wrong password");
+    return { user };
+  });
+});
+
+// New function: Searching user by email (copiado da função anterior, substituindo id por email)
+// app.patch('/api/user/:email', async (req, res) => {
+//   console.log("entramos no app.patch")
+//   console.log(req.body);
+//   await okOrError(res, async () => {
+//     await schemas.User.findOneAndUpdate(
+//       { email: req.params.email},
+//       {$set: {
+//         email: req.params.email
+//       }}
+//     );
+//   })
+// });
 
 /*
 // TODO: Implement server side
