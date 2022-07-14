@@ -73,7 +73,7 @@ export default {
       console.log(user);
 
       if (!res.ok) return new Error(res.error);
-      commit("register", user);
+      commit("register", res.user);
       return res.user;
     },
   },
