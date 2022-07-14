@@ -148,11 +148,8 @@ app.post('/api/user', async (req, res) => {
 
 app.patch('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => {
-    await schemas.User.findOneAndUpdate(
-      { id: req.params.id },
-      req.body
-    );
-    return { user: req.body };
+    const user = await schemas.User.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
+    return { user };
   })
 });
 
