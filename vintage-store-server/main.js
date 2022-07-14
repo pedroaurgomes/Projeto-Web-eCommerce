@@ -80,6 +80,7 @@ app.post('/api/product', async (req, res) => {
     console.log(product);
 
     await product.save();
+    return { product }
   });
 
   

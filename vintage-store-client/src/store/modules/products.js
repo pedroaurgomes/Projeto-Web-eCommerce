@@ -58,11 +58,12 @@ export default {
         { method: "POST",
         headers: { 'Content-Type':'application/json' },
         body: JSON.stringify(product)
-      });
-      
+      }).then(o => o.json());
+
       // TODO: verify that the object is valid
       if (!res.ok) return new Error(res.error);
-      commit("addProductToCache", product);
+      res.product.id = res.product._id;
+      commit("addProductToCache", res.product);
       return product;
     },
     async updateProduct({ commit }, product) {
