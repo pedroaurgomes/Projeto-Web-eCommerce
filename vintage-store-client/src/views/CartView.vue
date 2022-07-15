@@ -15,8 +15,8 @@
           <li v-for="(item, i) in cartItems" class="table-row col-7" :key="i">
             <template v-if="item.product">
               <div class="cart-image-col">
-                <img v-if="item.product.imgSrc" :src="item.product.imgSrc" />
-                <img v-else-if="item.product.imgB64" :src="item.product.imgB64" />
+                <img v-if="item.product.imgB64" :src="item.product.imgB64" />
+                <img v-else-if="item.product.imgSrc" :src="item.product.imgSrc" />
                 <img v-else src="/assets/product_img_placeholder.png" />
               </div>
               <div class="cart-title-col">

@@ -1,8 +1,8 @@
 <template>
   <div class="product-card" @click="$emit('click')">
     <div class="product-image">
-      <img v-if="imgSrc" :src="imgSrc" />
-      <img v-else-if="imgB64" :src="imgB64" />
+      <img v-if="imgB64" :src="imgB64" />
+      <img v-else-if="imgSrc" :src="imgSrc" />
       <img v-else src="/assets/product_img_placeholder.png" />
     </div>
     <div class="product-data">

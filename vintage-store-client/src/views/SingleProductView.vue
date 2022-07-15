@@ -2,7 +2,8 @@
   <Loading v-if="isLoading"/>
   <main v-else class="main-column">
     <div class="flex-row flex-wrap gap-md product-description">
-      <img v-if="imgSrc" :src="imgSrc" class="product-image" />
+      <img v-if="imgB64" :src="imgB64" class="product-image" />
+      <img v-else-if="imgSrc" :src="imgSrc" class="product-image" />
       <img v-else src="/assets/product_img_placeholder.png" class="product-image" />
       <div class="flex-col gap-sm product-data">
         <h3 class="no-margin">{{ title }}</h3>
