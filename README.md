@@ -180,7 +180,7 @@ docker run --rm --name mongo -p 27017:27017 -d mongo
 Inicie o backend através de
 
 ```bash
-npm instal
+npm install
 node main.js
 ```
 
