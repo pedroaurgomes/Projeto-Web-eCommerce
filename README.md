@@ -168,15 +168,6 @@ npm run dev
 
 Em outro terminal, entre na pasta `vintage-store-server`.
 
-Para rodar o backend é necessário ter o MongoDB instalado e com um banco de
-dados "test" que possa ser utilizado pela aplicação.
-
-Caso o docker esteja instalado, basta executar
-
-```bash
-docker run --rm --name mongo -p 27017:27017 -d mongo
-```
-
 Inicie o backend através de
 
 ```bash
