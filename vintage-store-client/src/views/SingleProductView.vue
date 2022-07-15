@@ -47,6 +47,7 @@ export default {
     description: null,
     price: null,
     imgSrc: null,
+    imgB64: null,
     longDescription: null,
     colors: [],
     nInStock: 0,
@@ -90,6 +91,7 @@ export default {
       this.description = product.description;
       this.price = product.price;
       this.imgSrc = product.imgSrc;
+      this.imgB64 = product.imgB64;
       this.colors = product.colors;
       this.longDescription = product.longDescription;
       this.selectedColor = product.defaultColor;

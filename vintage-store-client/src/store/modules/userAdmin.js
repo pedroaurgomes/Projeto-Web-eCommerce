@@ -38,12 +38,8 @@ const store = {
       const res = await fetch(
         `http://localhost:8080/api/user/${id}`,{
         method: "PATCH",
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          type: type,
-        }),
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ type: type }),
       }).then(o => o.json());
 
       if (!res.ok) return new Error(res.error);
