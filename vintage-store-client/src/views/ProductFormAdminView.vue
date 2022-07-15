@@ -3,9 +3,10 @@
     <h1>Cadastro de Produto</h1>
     <div class="flex-col">
       <img v-if="imgSrc" :src="imgSrc" class="image-select-display">
+      <img v-else-if="imgB64" :src="imgB64" class="image-select-display">
       <img v-else src="/assets/product_img_placeholder.png" class="image-select-display">
       <!-- This input is hidden. It is activated through the button -->
-      <input type="file" @change="uploadFile" ref="fileInput" style="display: none">
+      <input type="file" @change="uploadFile" accept="image/png" ref="fileInput" style="display: none">
     </div>
     <br>
     <Button color="light-gray" @click="selectFile">Editar</Button>
@@ -86,9 +87,9 @@ export default {
     brand: "",
     price: "",
     description: "",
-    colors: [],
+    colors: "",
     defaultColor: 0,
-    imgSrc: "",
+    imgB64: "",
     longDescription: "",
     nInStock: "",
   }),
@@ -141,7 +142,7 @@ export default {
         description: this.description,
         colors: this.colors.split(","),
         defaultColor: this.defaultColor,
-        imgSrc: this.imgSrc,
+        imgB64: this.imgB64,
         longDescription: this.longDescription,
         nSold: 0,
         nInStock: parseInt(this.nInStock),
@@ -162,13 +163,26 @@ export default {
       this.isLoading = false;
       this.$router.back();
     },
-    uploadFile(e) {
+    async uploadFile(e) {
       if (!e.target?.files || e.target.files.length <= 0 || !e.target.files[0]) return;
-    	this.imgSrc = URL.createObjectURL(e.target.files[0]);
+      const file = e.target.files[0];
+      if (file.size >= 500000) {
+        alert("Imagens devem ter no máximo 500KB de tamanho.");
+        return;
+      }
+      this.imgB64 = await this.fileToBase64(file);
     },
     selectFile() {
       // Open the file selection
       this.$refs.fileInput.click();
+    },
+    async fileToBase64(file) {
+      return new Promise(resolve => {
+        // Encode the file using the FileReader API
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
     }
   }
 }

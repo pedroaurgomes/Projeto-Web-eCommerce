@@ -45,8 +45,6 @@ const store = {
           type: type,
         }),
       }).then(o => o.json());
-      console.log("updateUser");
-      console.log(res);
 
       if (!res.ok) return new Error(res.error);
       commit("cacheUser", res.user);

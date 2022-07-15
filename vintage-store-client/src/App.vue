@@ -21,13 +21,10 @@ export default {
     unsubscribeMutation: null,
   }),
   created() {
-    if (localStorage.getItem("users") === null) {
-    } else {
-      // If there is a current user that was already logged in, login again
-      // with the same data.
-      this.$store.commit("currentUser/tryLoadFromLocalStorage");
-      this.$store.commit("tryLoadCartFromLocalStorage");
-    }
+    // If there is a current user that was already logged in, login again
+    // with the same data.
+    this.$store.commit("currentUser/tryLoadFromLocalStorage");
+    this.$store.commit("tryLoadCartFromLocalStorage");
 
     this.unsubscribeMutation = this.$store.subscribe(mutation => {
       if (mutation.type === "navigationError") {

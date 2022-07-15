@@ -118,7 +118,7 @@ export default {
         alert("Telefone precisa ser preenchido e somente caracteres numericos");
         return;
       }
-      
+
       trueWhileAction(
         b => this.isLoading = b,
         this.$store.dispatch("currentUser/update", {

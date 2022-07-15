@@ -11,7 +11,7 @@
         <select v-model="selectedColor">
           <option v-for="(color, i) in colors" :key="i" :value="i">{{ color }}</option>
         </select>
-        <Counter v-model="quantity"></Counter>
+        <Counter v-model="quantity" :max="nInStock"></Counter>
         <p class="no-margin">Total: {{ formatPrice(price * quantity) }}</p>
         <p class="no-margin">Unitário: {{ formatPrice(price) }} ({{ quantity }}x)</p>
         <Button @click="addToCart" :disabled="isAdmin">Comprar</Button>
@@ -48,6 +48,7 @@ export default {
     imgSrc: null,
     longDescription: null,
     colors: [],
+    nInStock: 0,
 
     // Inputs that can be changed by the user.
     selectedColor: null,
@@ -91,6 +92,7 @@ export default {
       this.colors = product.colors;
       this.longDescription = product.longDescription;
       this.selectedColor = product.defaultColor;
+      this.nInStock = product.nInStock;
     }
   }
 }

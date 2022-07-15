@@ -22,6 +22,7 @@
         :brand="product.brand"
         :price="product.price"
         :imgSrc="product.imgSrc"
+        :imgB64="product.imgB64"
         @click="gotoProduct(product.id)"
       ></ProductCard>
     </div>

@@ -49,7 +49,10 @@ const store = createStore({
       if (!state.cartItems[idx]) return;
       Object.assign(state.cartItems[idx], update);
     },
-    clearCart: state => state.cartItems = [],
+    clearCart(state) {
+      state.cartItems = [];
+      localStorage.removeItem("cart");
+    },
     tryLoadCartFromLocalStorage(state) {
       const cart = localStorage.getItem("cart");
       if (!cart) return;
@@ -72,7 +75,7 @@ const store = createStore({
     async logout({ commit }) {
       localStorage.removeItem("currentUser");
       commit("currentUser/reset");
-      commit("clearCart"); //TODO: clean Cart
+      commit("clearCart");
     },
     async purchase({ commit, dispatch, getters }) {
       // Perform operations concurrently if necessary.
@@ -82,6 +85,12 @@ const store = createStore({
           if (!item.product) {
             item.product = await dispatch("fetchOrGetProduct", item.productId);
           }
+
+          await dispatch("updateProduct", {
+            id: item.productId,
+            nSold: item.product.nSold + item.quantity,
+            nInStock: item.product.nInStock - item.quantity,
+          });
         })());
       }
       await Promise.all(promises);

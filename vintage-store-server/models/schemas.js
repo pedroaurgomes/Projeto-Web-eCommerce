@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
   colors: [String],
   defaultColor: Number,
   imgSrc: String,
+  imgB64: String,
   longDescription: String,
   nSold: Number,
   nInStock: Number,

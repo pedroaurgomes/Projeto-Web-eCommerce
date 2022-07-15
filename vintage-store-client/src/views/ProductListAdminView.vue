@@ -15,6 +15,7 @@
           <li v-for="(product, i) in products" class="table-row col-7" :key="i">
             <div>
               <img v-if="product.imgSrc" :src="product.imgSrc" />
+              <img v-else-if="product.imgB64" :src="product.imgB64" />
               <img v-else src="/assets/product_img_placeholder.png" />
             </div>
             <div class="span-cols-2">

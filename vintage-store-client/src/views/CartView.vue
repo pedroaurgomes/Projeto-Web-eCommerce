@@ -16,6 +16,7 @@
             <template v-if="item.product">
               <div class="cart-image-col">
                 <img v-if="item.product.imgSrc" :src="item.product.imgSrc" />
+                <img v-else-if="item.product.imgB64" :src="item.product.imgB64" />
                 <img v-else src="/assets/product_img_placeholder.png" />
               </div>
               <div class="cart-title-col">
@@ -26,6 +27,7 @@
               <Counter
                 :textSize="1"
                 :modelValue="item.quantity"
+                :max="item.product.nInStock"
                 @update:modelValue="quantity => $store.commit('updateCartItem', { idx: i, quantity })"
               ></Counter>
               <div>{{ formatPrice(item.quantity * item.product.price) }}</div>
@@ -60,7 +62,7 @@
             </fieldset>
             <fieldset class="flex-col gap-sm">
               <legend>Método de pagamento</legend>
-              
+
               <div class="flex-col gap-sm">
                 <div class="flex-row">
                   <input type="radio" name="paymentMethod" id="pm-credit" value="credit-card" v-model="paymentMethod">
@@ -193,14 +195,8 @@ export default {
         alert("Insira um código de segurança");
         return false;
       }
-      
+
       return true;
-    },
-    async calculateShippingCost() {
-      if (!this.validateZipCode()) return;
-      this.isLoading = true;
-      this.shippingCost = await mock.calculateShippingCost(this.zipCode);
-      this.isLoading = false;
     },
     async submit() {
       if (!this.validateZipCode()) return;
@@ -220,7 +216,19 @@ export default {
       this.isLoading = false;
       alert("Compra concluida com sucesso!");
       this.$router.push({ name: "home" });
-    }
+    },
+    calculateShippingCost() {
+      if (!this.validateZipCode()) return;
+      // Very simple way of producing a cost that is kind of random and determined
+      // by the zip code.
+      let hash = 0;
+      for (let i = 0; i < this.zipCode.length; i++) {
+        hash += Math.pow(10, i) * this.zipCode.charCodeAt(i);
+        hash += this.zipCode.charCodeAt(i);
+        hash %= 100;
+      }
+      this.shippingCost = hash;
+    },
   },
 };
 </script>

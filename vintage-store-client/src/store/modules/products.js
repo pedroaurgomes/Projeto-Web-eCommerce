@@ -41,18 +41,17 @@ export default {
     async deleteProduct({ commit }, productId) {
       const res = await fetch(
         `http://localhost:8080/api/product/${productId}`,
-        { method: "DELETE", }
+        { method: "DELETE" }
       ).then(o => o.json());
-      
+
       if (!res.ok) return new Error(res.error);
       commit("removeProduct", productId);
       return true;
     },
     async createProduct({ commit }, product) {
-      const res = await fetch(
-        `http://localhost:8080/api/product`,
-        { method: "POST",
-        headers: { 'Content-Type':'application/json' },
+      const res = await fetch("http://localhost:8080/api/product", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(product)
       }).then(o => o.json());
 
@@ -62,19 +61,11 @@ export default {
       return product;
     },
     async updateProduct({ commit }, product) {
-      console.log("product: ")
-      console.log(product)
-      const res = await fetch(`http://localhost:8080/api/product/${product.id}`, { 
+      const res = await fetch(`http://localhost:8080/api/product/${product.id}`, {
         method: "PATCH",
-        headers: {
-          'Content-type': 'application/json',
-        },
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(product),
       }).then(o => o.json());
-      
-      console.log("Res: ")
-      console.log(res);
-      console.log(product);
 
       if (!res.ok) return new Error(res.error);
       res.product.id = res.product._id;

@@ -2,18 +2,19 @@
 <template> 
   <div class="counter">
     <button
-      @click="$emit('update:modelValue', modelValue - 1)"
+      @click="$emit('update:modelValue', clamp(modelValue - 1))"
       style="font-weight: bold"
     > - </button>
     <input
       type="number"
       min="1"
+      :max="max"
       :value="modelValue"
-      @input="e => $emit('update:modelValue', e.target.value)"
+      @input="e => $emit('update:modelValue', clamp(e.target.value))"
       :style="{'width': `${textSize}em`}"
     >
     <button
-      @click="$emit('update:modelValue', Math.max(modelValue + 1, 1))"
+      @click="$emit('update:modelValue', clamp(modelValue + 1))"
       style="font-weight: bold"
     > + </button>
   </div>
@@ -31,19 +32,16 @@ export default {
       type: Number,
       required: false,
       default: 3,
+    },
+    max: {
+      type: Number,
+      required: true,
     }
   },
-  methods: { 
-    increment() {
-      this.count++;
-      // emit the event: "Input"
-    },
-    decrement() {
-      if (this.count > 1){
-        this.count--;
-      }
-      // emit the event: "Input"
-    },
+  methods: {
+    clamp(val) {
+      return Math.min(Math.max(val, 1), this.max);
+    }
   }
 };
 </script>
