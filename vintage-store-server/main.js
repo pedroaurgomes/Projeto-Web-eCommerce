@@ -144,14 +144,14 @@ app.get('/api/users', async (req, res) => {
 // Get one specific user from the database by id.
 app.get('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => ({
-    user: assertNotNull(await schemas.User.findOne({ _id: req.params.id })),
+    user: assertNotNull(await schemas.User.findOne({ id: req.params.id })),
   }));
 });
 
 // Deletes a user from the database by id
 app.delete('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => {
-    await schemas.User.deleteOne({ _id: req.params.id });
+    await schemas.User.deleteOne({ id: req.params.id });
   });
 });
 
@@ -167,7 +167,7 @@ app.post('/api/user', async (req, res) => {
 // Updates a user by id.
 app.patch('/api/user/:id', async (req, res) => {
   await okOrError(res, async () => {
-    const user = await schemas.User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+    const user = await schemas.User.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
     return { user };
   })
 });
