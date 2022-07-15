@@ -181,6 +181,7 @@ frontend e acesse o console. Nele execute o seguinte comando:
 
 ```javascript
 fetch("http://localhost:8080/api/populate_products", { method: "POST" });
+fetch("http://localhost:8080/api/populate_users", { method: "POST" });
 ```
 
 Recarregue a página.
