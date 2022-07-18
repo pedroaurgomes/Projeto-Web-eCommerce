@@ -55,7 +55,11 @@ const store = {
       if (!res.ok) return new Error(res.error);
       commit("removeUser", userId);
       return true;
-    }
+    },
+    async removeUserFromCache({ commit }, userId) {
+      commit("removeUser", userId);
+      return true;
+    },
   }
 };
 

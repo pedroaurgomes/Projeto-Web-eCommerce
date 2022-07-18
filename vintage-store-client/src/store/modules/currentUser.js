@@ -57,8 +57,11 @@ export default {
       }).then(o => o.json());
 
       if (!res.ok) return new Error(res.error);
-      commit("register", { ...res.user, id: res.user._id });
+      commit("register", { ...res.user, id: res.user.id });
       return user;
+    },
+    async removeCurrentUserFromCache({ state,dispatch }) {
+      return dispatch("userAdmin/removeUserFromCache", state.id,{ root: true });
     },
   },
 };

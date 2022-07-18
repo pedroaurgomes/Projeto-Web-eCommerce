@@ -72,7 +72,9 @@ export default {
   },
   created() {
     this.$store.dispatch("userAdmin/fetchUsers")
-      .then(() => this.isLoading = false);
+      .then(() => this.$store.dispatch("currentUser/removeCurrentUserFromCache"))
+      .then(() => this.isLoading = false)
+    
   },
   methods: {
     startEditing(id, initialType) {
